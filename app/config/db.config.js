@@ -1,7 +1,8 @@
 module.exports = {
   HOST: "localhost",
   USER: "root",
-  PASSWORD: process.env.ROOT_PW,
+  // PASSWORD: process.env.ROOT_PW,
+  PASSWORD: "root",
   DB: "recipes_test_db",
   dialect: "mysql",
   pool: {
@@ -12,4 +13,4 @@ module.exports = {
   },
 };
 
-// pool are optional Sequelize connection pool configurations
+// pool is optional Sequelize connection pool configurations

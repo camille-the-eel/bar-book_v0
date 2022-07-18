@@ -37,6 +37,9 @@ app.get("/", (req, res) => {
   res.json({ message: "Bar Book v0 running" });
 });
 
+// API routes
+require("./app/routes/recipe.routes.js")(app);
+
 // Set port / Listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

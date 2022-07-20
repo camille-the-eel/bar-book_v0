@@ -2,7 +2,9 @@
   <div class="page-container">
     <div class="recipes-container">
       <div class="recipe" v-for="recipe in recipes" :key="recipe.id">
-        <router-link :to="`/recipes/${recipe.drinkName}+${recipe.id}`">
+        <div class="delete-recipe" @click="deleteRecipe(recipe.id)">X</div>
+        <!-- <router-link :to="`/recipes/${recipe.drinkName}+${recipe.id}`"> -->
+        <router-link :to="`/recipes/${recipe.id}`">
           <tr class="drink-name-header">
             <th colspan="2">
               {{ recipe.drinkName }}
@@ -50,7 +52,12 @@ export default {
       console.log(res.data);
     });
   },
-  methods: {},
+  methods: {
+    deleteRecipe(id) {
+      console.log("delete clicked on ", id);
+      RecipeDataService.delete(id);
+    },
+  },
 };
 </script>
 
@@ -68,6 +75,7 @@ export default {
 .recipe {
   background-color: #999;
   margin-bottom: 20px;
+  position: relative;
 }
 
 a {
@@ -86,5 +94,13 @@ a {
 .draft {
   background-color: goldenrod;
   position: absolute;
+}
+
+.delete-recipe {
+  background-color: darkred;
+  color: #fff;
+  position: absolute;
+  padding: 7px;
+  right: 0;
 }
 </style>

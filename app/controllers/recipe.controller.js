@@ -62,13 +62,49 @@ exports.findAll = (req, res) => {
 };
 
 // Find a single recipe with an id
-exports.findOne = (req, res) => {};
+exports.findOne = (req, res) => {
+  const id = req.params.id;
+  Recipe.findByPk(id)
+    .then((data) => {
+      if (data) {
+        res.send(data);
+      } else {
+        res.status(400).send({
+          message: `Could not find Recipe with id of ${id}.`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error retrieving Recipe with id of ${id}.`,
+      });
+    });
+};
 
 // Update a recipe by id (in the req)
 exports.update = (req, res) => {};
 
 // Delete a tutorial by id (in the req)
-exports.delete = (req, res) => {};
+exports.delete = (req, res) => {
+  const id = req.params.id;
+  Recipe.destroy({
+    where: { id: id },
+  })
+    .then((n) => {
+      if (n === 1) {
+        res.send({ message: "Recipe was deleted successfully." });
+      } else {
+        res.send({
+          message: `Cannot delete Recipe with id of ${id}. Perhaps Recipe was not found.`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Coould not delete Recipe with id of ${id}.`,
+      });
+    });
+};
 
 // Delete all recipes from the database
 exports.deleteAll = (req, res) => {};

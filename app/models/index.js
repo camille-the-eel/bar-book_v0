@@ -18,7 +18,18 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
 const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
+
 db.recipes = require("./recipe.model.js")(sequelize, Sequelize);
+db.recipeIngredients = require("./recipeIngredient.model.js")(
+  sequelize,
+  Sequelize
+);
+
+db.recipes.hasMany(db.recipeIngredients, { as: "recipeIngredients " });
+db.recipeIngredients.belongsTo(db.recipes, {
+  foreignKey: "recipeId",
+  as: "recipe",
+});
 
 // Exporting db object
 module.exports = db;

@@ -3,15 +3,12 @@
 </template>
 
 <script>
-import RecipeDataService from "../services/RecipeDataService";
+// import RecipeDataService from "../services/RecipeDataService";
 
 export default {
   name: "recipe",
   data() {
     return {};
-  },
-  mounted() {
-    RecipeDataService.getAll();
   },
   methods: {},
 };

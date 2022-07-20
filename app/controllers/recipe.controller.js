@@ -6,6 +6,8 @@ const Op = db.Sequelize.Op;
 
 // Create and save new recipe
 exports.create = (req, res) => {
+  console.log("BODY", req.body);
+
   // Validate request
   if (!req.body.drinkName) {
     res.status(400).send({
@@ -16,8 +18,11 @@ exports.create = (req, res) => {
   // Create a Recipe
   const recipe = {
     drinkName: req.body.drinkName,
-    instructioons: req.body.instructions,
+    description: req.body.description,
+    instructions: req.body.instructions,
+    draft: req.body.draft ? req.body.draft : false,
     published: req.body.published ? req.body.published : false,
+    yearCreated: req.body.yearCreated ? req.body.yearCreated : null,
   };
   // Save Recipe to database
   Recipe.create(recipe)
@@ -34,10 +39,9 @@ exports.create = (req, res) => {
 };
 
 // Retrieve all recipes from the database
-
 exports.findAll = (req, res) => {
   /*
-  // Or retrieve by title -> runs as such when arg passed in
+  // Or retrieve by title -> runs as such when 2nd arg passed in
   const drinkName = req.query.drinkName;
   let condition = drinkName
     ? { drinkName: { [Op.like]: `%${drinkName}%` } }

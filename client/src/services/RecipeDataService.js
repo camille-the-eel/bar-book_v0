@@ -23,7 +23,7 @@ class RecipeDataService {
     return http.delete(`/recipes`);
   }
   findByDrinkName(drinkName) {
-    return http.get(`/tutorials?drinkName=${drinkName}`);
+    return http.get(`/recipes?drinkName=${drinkName}`);
   }
 }
 

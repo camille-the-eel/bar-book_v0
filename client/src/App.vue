@@ -1,15 +1,26 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Recipes</router-link> |
-    <router-link to="/recipes">Recipe Details</router-link> |
-    <router-link to="/add">Add a Recipe</router-link>
-  </div>
-  <router-view />
+  <nav>
+    <RouterLink to="/">Home</RouterLink> |
+    <RouterLink to="/recipes">Browse Recipes</RouterLink> |
+    <RouterLink to="/add">Add a Recipe</RouterLink>
+  </nav>
+  <RouterView />
 </template>
 
 <script>
+import { RouterLink, RouterView } from "vue-router";
+
 export default {
   name: "app",
+  components: {
+    RouterLink,
+    RouterView,
+  },
+  methods: {
+    check() {
+      console.log("clicked");
+    },
+  },
 };
 </script>
 

@@ -14,5 +14,8 @@ module.exports = (app) => {
   // Delete Recipe by id
   router.delete("/:id", recipes.delete);
 
+  // Update Recipe by id
+  router.put("/:id", recipes.update);
+
   app.use("/api/recipes", router);
 };

@@ -2,7 +2,6 @@
   <div class="page-container">
     <div class="recipes-container">
       <div class="recipe" v-for="recipe in recipes" :key="recipe.id">
-        <div class="delete-recipe" @click="deleteRecipe(recipe.id)">X</div>
         <!-- <router-link :to="`/recipes/${recipe.drinkName}+${recipe.id}`"> -->
         <router-link :to="`/recipes/${recipe.id}`">
           <tr class="drink-name-header">
@@ -12,9 +11,12 @@
             <div :class="recipe.draft ? 'draft' : 'hidden'">DRAFT</div>
           </tr>
           <tr>
-            <td colspan="2">
-              {{ recipe.description }}
-            </td>
+            <th>Qty unit</th>
+            <td>ingredient {{ recipe.ingredients }}</td>
+          </tr>
+          <tr>
+            <th>Qty unit</th>
+            <td>ingredient {{ recipe.ingredients }}</td>
           </tr>
           <tr>
             <th>Qty unit</th>
@@ -23,11 +25,6 @@
           <tr>
             <td colspan="2">
               {{ recipe.instructions }}
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              {{ recipe.yearCreated }}
             </td>
           </tr>
         </router-link>
@@ -52,12 +49,7 @@ export default {
       console.log(res.data);
     });
   },
-  methods: {
-    deleteRecipe(id) {
-      console.log("delete clicked on ", id);
-      RecipeDataService.delete(id);
-    },
-  },
+  methods: {},
 };
 </script>
 
@@ -68,7 +60,7 @@ export default {
 }
 
 .recipes-container {
-  max-width: 400px;
+  max-width: 600px;
   margin: 20px auto;
 }
 
@@ -93,14 +85,11 @@ a {
 
 .draft {
   background-color: goldenrod;
-  position: absolute;
+  /* position: absolute; */
 }
 
 .delete-recipe {
-  background-color: darkred;
-  color: #fff;
   position: absolute;
-  padding: 7px;
   right: 0;
 }
 </style>

@@ -82,7 +82,26 @@ exports.findOne = (req, res) => {
 };
 
 // Update a recipe by id (in the req)
-exports.update = (req, res) => {};
+exports.update = (req, res) => {
+  const id = req.params.id;
+  Recipe.update({
+    where: { id: id },
+  })
+    .then((n) => {
+      if (n === 1) {
+        res.send({ message: "Recipe was updated successfully." });
+      } else {
+        res.send({
+          message: `Cannot update Recipe with id of ${id}. Perhaps Recipe was not found.`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Coould not update Recipe with id of ${id}.`,
+      });
+    });
+};
 
 // Delete a tutorial by id (in the req)
 exports.delete = (req, res) => {

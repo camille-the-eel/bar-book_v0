@@ -46,7 +46,6 @@ export default {
   mounted() {
     RecipeDataService.getAll().then((res) => {
       this.recipes = [...res.data];
-      console.log(res.data);
     });
   },
   methods: {},

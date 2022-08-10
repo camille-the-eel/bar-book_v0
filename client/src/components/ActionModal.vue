@@ -10,19 +10,19 @@
             {
               this.useSecondConfirmation === true
                 ? openFinalCheck()
-                : confirm(recipe.id);
+                : confirmAction(recipe.id);
             }
           "
         >
-          {{ this.confirmButton }}
+          {{ this.actionButton }}
         </button>
         <button @click="closeModal()">{{ this.cancelButton }}</button>
       </div>
       <div class="final-check" v-if="this.showSecondConfirmation">
         <h3>{{ this.header }}</h3>
         <p>{{ this.finalMessage }}</p>
-        <button @click="secondConfirm(recipe.id)">
-          {{ this.secondConfirmButton }}
+        <button @click="secondConfirmAction(recipe.id)">
+          {{ this.confirmActionButton }}
         </button>
         <button @click="closeModal()">{{ this.cancelButton }}</button>
       </div>
@@ -39,7 +39,7 @@ export default {
     action: String,
   },
   emits: {
-    "confirm-click": function (id) {
+    "action-click": function (id) {
       if (id) {
         return true;
       } else {
@@ -59,8 +59,8 @@ export default {
       disclaimerMessage: "",
       mainMessage: "",
       finalMessage: "",
-      confirmButton: "",
-      secondConfirmButton: "",
+      actionButton: "",
+      confirmActionButton: "",
       cancelButton: "",
     };
   },
@@ -72,22 +72,31 @@ export default {
       this.mainMessage =
         "Are you sure you want to delete this recipe from your Little Bar Book?";
       this.finalMessage =
-        "Re-confirm that you want to permantently delete this recipe.";
-      this.confirmButton = "Yes, permanently delete.";
-      this.secondConfirmButton = "Yes. Delete it forever.";
+        "Re-confirm that you want to delete this recipe. This cannot be undone.";
+      this.actionButton = "Yes, permanently delete.";
+      this.confirmActionButton = "Yes. Delete it forever.";
       this.cancelButton = "No, nevermind.";
       this.useSecondConfirmation = true;
+    }
+    if (this.action === "EXIT_EDIT") {
+      this.header = "EXIT EDITING MODE?";
+      this.disclaimerMessage = "Your changes will not be saved!";
+      this.actionButton = "Exit, discard changes.";
+      this.cancelButton = "Oops, take me back to editing mode.";
+      this.useSecondConfirmation = false;
     }
   },
   methods: {
     openFinalCheck() {
       this.showSecondConfirmation = true;
     },
-    confirm(id) {
-      this.$emit("confirm-click", id);
+    confirmAction(id) {
+      this.$emit("action-click", id);
+      this.$emit("close-modal");
     },
-    secondConfirm(id) {
-      this.$emit("confirm-click", id);
+    secondConfirmAction(id) {
+      this.$emit("action-click", id);
+      this.$emit("close-modal");
     },
     closeModal() {
       this.$emit("close-modal");

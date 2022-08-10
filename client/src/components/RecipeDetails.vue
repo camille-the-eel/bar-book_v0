@@ -41,7 +41,7 @@ import EditButton from "@/components/EditButton.vue";
 // import RecipeDataService from "../services/RecipeDataService";
 
 export default {
-  name: "recipe",
+  name: "RecipeDetails",
   components: { DeleteButton, EditButton },
   props: {
     recipe: Object,
@@ -65,6 +65,9 @@ export default {
       }
     },
   },
+  mounted() {
+    console.log(this.recipe);
+  },
   methods: {
     deleteRecipeClick(id) {
       this.$emit("delete-recipe-click", id);
@@ -76,8 +79,4 @@ export default {
 };
 </script>
 
-<style>
-.edit-recipe-btn {
-  z-index: 2;
-}
-</style>
+<style></style>

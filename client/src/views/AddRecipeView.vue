@@ -23,23 +23,90 @@
           name="description"
         />
       </div>
+      <!-- add in ingredients here -->
+      <div class="form-group">
+        <label for="qty">Qty</label>
+        <input
+          type="text"
+          class="form-control"
+          id="qty"
+          v-model="recipe.recipeIngredientItems[0].measurement_qty"
+          name="qty"
+        />
+        <label for="unit">Unit</label>
+        <input
+          type="text"
+          class="form-control"
+          id="unit"
+          v-model="recipe.recipeIngredientItems[0].measurement_unit"
+          name="unit"
+        />
+        <label for="ingredient">Ingredient</label>
+        <input
+          type="text"
+          class="form-control"
+          id="ingredient"
+          v-model="recipe.recipeIngredientItems[0].ingredient"
+          name="ingredient"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="qty2">Qty</label>
+        <input
+          type="text"
+          class="form-control"
+          id="qty2"
+          v-model="recipe.recipeIngredientItems[1].measurement_qty"
+          name="qty"
+        />
+        <label for="unit2">Unit</label>
+        <input
+          type="text"
+          class="form-control"
+          id="unit2"
+          v-model="recipe.recipeIngredientItems[1].measurement_unit"
+          name="unit"
+        />
+        <label for="ingredient2">Ingredient</label>
+        <input
+          type="text"
+          class="form-control"
+          id="ingredient2"
+          v-model="recipe.recipeIngredientItems[1].ingredient"
+          name="ingredient"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="garnish">Garnish</label>
+        <input
+          type="text"
+          class="form-control"
+          id="garnish"
+          v-model="recipe.garnish"
+          name="garnish"
+        />
+      </div>
+      <div class="form-group">
+        <label for="glass">Glass</label>
+        <input
+          type="text"
+          class="form-control"
+          id="glass"
+          v-model="recipe.glass"
+          name="glass"
+        />
+      </div>
       <div class="form-group">
         <label for="instructions">Instructions</label>
         <input
+          type="text"
           class="form-control"
           id="instructions"
           v-model="recipe.instructions"
           name="instructions"
-        />
-      </div>
-      <div class="form-group">
-        <label for="ingredient">Ingredient</label>
-        <input
-          class="form-control"
-          id="ingredient"
-          required
-          v-model="recipe.ingredient"
-          name="ingredient"
         />
       </div>
       <div class="form-group">
@@ -51,6 +118,38 @@
           v-model="recipe.draft"
           name="draft"
         />
+        <div class="form-group">
+          <label for="creator-attribution">Creator Attribution</label>
+          <input
+            type="text"
+            class="form-control"
+            id="creator-attribution"
+            v-model="recipe.creatorAttribution"
+            name="creator-attribution"
+          />
+        </div>
+        <div class="form-group">
+          <label for="year-created">Year Created</label>
+          <input
+            type="text"
+            class="form-control"
+            id="year-created"
+            v-model="recipe.yearCreated"
+            name="year-created"
+          />
+        </div>
+        <div class="form-group">
+          <label for="other-info"
+            >Fun facts or other information about this drink:</label
+          >
+          <input
+            type="textarea"
+            class="form-control"
+            id="other-info"
+            v-model="recipe.otherInfo"
+            name="other-info"
+          />
+        </div>
         <br />
         <!-- <span class="draft-disclaimer"
           >Draft recipes will be saved to your personal bar book, but cannot be
@@ -81,8 +180,24 @@ export default {
         id: null,
         drinkName: "",
         description: "",
+        recipeIngredientItems: [
+          {
+            measurement_qty: null,
+            measurement_unit: "",
+            ingredient: "",
+          },
+          {
+            measurement_qty: null,
+            measurement_unit: "",
+            ingredient: "",
+          },
+        ],
+        garnish: "",
+        glass: "",
         instructions: "",
-        ingredient: "",
+        creatorAttribution: "",
+        yearCreated: "",
+        otherInfo: "",
         draft: false,
         published: false,
       },
@@ -94,10 +209,18 @@ export default {
       let data = {
         drinkName: this.recipe.drinkName,
         description: this.recipe.description,
+        // NOTE: may need to update this line due to data modeling changes on server side
+        ingredientItems: this.recipe.recipeIngredientItems,
+        garnish: this.recipe.garnish,
+        glass: this.recipe.glass,
         instructions: this.recipe.instructions,
-        ingredient: this.recipe.ingredient,
+        creatorAttribution: this.recipe.creatorAttribution,
+        yearCreated: this.recipe.yearCreated,
+        otherInfo: this.recipe.otherInfo,
         draft: this.recipe.draft,
+        published: this.recipe.published,
       };
+
       RecipeDataService.create(data)
         .then((res) => {
           this.recipe.id = res.data.id;
@@ -110,7 +233,31 @@ export default {
     },
     newRecipe() {
       this.submitted = false;
-      this.recipe = {};
+      this.recipe = {
+        id: null,
+        drinkName: "",
+        description: "",
+        recipeIngredientItems: [
+          {
+            measurement_qty: null,
+            measurement_unit: "",
+            ingredient: "",
+          },
+          {
+            measurement_qty: null,
+            measurement_unit: "",
+            ingredient: "",
+          },
+        ],
+        garnish: "",
+        glass: "",
+        instructions: "",
+        creatorAttribution: "",
+        yearCreated: "",
+        otherInfo: "",
+        draft: false,
+        published: false,
+      };
     },
   },
 };

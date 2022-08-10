@@ -2,6 +2,7 @@
 
 const db = require("../models");
 const Recipe = db.recipes;
+const RecipeIngredient = db.recipeIngredients;
 const Op = db.Sequelize.Op;
 
 // Create and save new recipe
@@ -16,14 +17,27 @@ exports.create = (req, res) => {
     return;
   }
   // Create a Recipe
-  const recipe = {
+  let recipe = {
     drinkName: req.body.drinkName,
     description: req.body.description,
+    garnish: req.body.garnish,
+    glass: req.body.glass,
+    ingredientItems: req.body.ingredientItems,
     instructions: req.body.instructions,
     draft: req.body.draft ? req.body.draft : false,
     published: req.body.published ? req.body.published : false,
+    creatorAttribution: req.body.creatorAttribution,
     yearCreated: req.body.yearCreated ? req.body.yearCreated : null,
+    otherInfo: req.body.otherInfo,
   };
+
+  // TODO: set up proper data modeling handling, set these to recipeIngredient table, attach foreign key for each
+  req.body.ingredientItems.forEach((el, i) => {
+    recipe[`ingredientItem${i}_Qty`] = el.measurement_qty;
+    recipe[`ingredientItem${i}_Unit`] = el.measurement_unit;
+    recipe[`ingredientItem${i}_Ingredient`] = el.ingredient;
+  });
+
   // Save Recipe to database
   Recipe.create(recipe)
     .then((data) => {
@@ -36,6 +50,28 @@ exports.create = (req, res) => {
           "recipe.controller.js | some error occurred while creating the Recipe",
       });
     });
+
+  /*
+  req.body.ingredientItems.forEach((el) => {
+    RecipeIngredient.create({
+      measurementQty: el.measurement_qty,
+      measurementUnit: el.measurement_unit,
+      ingredient: el.ingredient,
+      recipeId: req.body.recipeId,
+    })
+      .then((data) => {
+        console.log("DATA after create", data);
+        res.send(data);
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message:
+            err.message ||
+            "recipeIngredient.controller.js | some error occured while creating the RecipeIngredient",
+        });
+      });
+  });
+  */
 };
 
 // Retrieve all recipes from the database
@@ -98,7 +134,7 @@ exports.update = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: `Coould not update Recipe with id of ${id}.`,
+        message: `Could not update Recipe with id of ${id}. ${err}`,
       });
     });
 };
@@ -120,7 +156,7 @@ exports.delete = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: `Coould not delete Recipe with id of ${id}.`,
+        message: `Could not delete Recipe with id of ${id}. ${err}`,
       });
     });
 };

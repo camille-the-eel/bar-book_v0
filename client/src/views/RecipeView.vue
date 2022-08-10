@@ -1,13 +1,14 @@
 <template>
   <div class="page-container">
     <ActionModal
-      v-if="this.deleteModalShow"
+      v-if="this.modalShow"
       :recipe="this.recipe"
-      :action="'DELETE'"
-      @confirm-click="confirmedDeleteRecipe"
+      :action="this.modalAction"
+      @action-click="this.modalActionClick"
       @close-modal="closeModal"
     ></ActionModal>
     <div class="recipe-container">
+      <h3>I am the recipe container.</h3>
       <RecipeDetails
         :recipe="this.recipe"
         v-if="this.recipe.id && !this.editingMode"
@@ -16,6 +17,9 @@
       ></RecipeDetails>
       <RecipeEditForm
         v-if="this.recipe.id && this.editingMode"
+        :recipe="this.recipe"
+        @exit-edit-click="exitEditRequest"
+        @save-edits="saveEditUpdates"
       ></RecipeEditForm>
       <RecipeNotFound
         v-if="!this.recipe.id"
@@ -37,25 +41,33 @@ export default {
   components: { RecipeDetails, RecipeEditForm, RecipeNotFound, ActionModal },
   data() {
     return {
-      recipe: [],
+      recipe: {},
       editingMode: false,
-      deleteModalShow: false,
+      modalShow: false,
+      modalAction: "",
+      modalActionClick: "",
       notFoundMessage: "",
     };
   },
   mounted() {
-    RecipeDataService.get(this.$route.params.id).then(
-      (res) => (this.recipe = res.data)
-    );
+    RecipeDataService.get(this.$route.params.id).then((res) => {
+      this.recipe = res.data;
+    });
+    console.log(this.recipe);
   },
   methods: {
+    closeModal() {
+      this.modalShow = false;
+    },
+    // DELETING -----------------------
     deleteRecipeRequest() {
-      this.deleteModalShow = true;
+      this.modalShow = true;
+      this.modalAction = "DELETE";
+      this.modalActionClick = this.confirmedDeleteRecipe;
     },
     confirmedDeleteRecipe(id) {
       RecipeDataService.delete(id)
         .then(() => {
-          this.closeModal();
           this.recipe = [];
           this.notFoundMessage = "Recipe was successfully deleted.";
         })
@@ -63,14 +75,29 @@ export default {
           console.warn(`Error when deleting recipe with id: ${id}. ${err}`);
         });
     },
-    enterEditMode(id) {
+    // EDIT MODE -----------------------
+    enterEditMode() {
       this.editingMode = true;
-      // enter mode
-      // RecipeDataService.update(id, data);
-      console.log("edit clicked on ", id);
     },
-    closeModal() {
-      this.deleteModalShow = false;
+    exitEditRequest() {
+      this.modalShow = true;
+      this.modalAction = "EXIT_EDIT";
+      this.modalActionClick = this.exitEditMode;
+    },
+    exitEditMode() {
+      this.editingMode = false;
+    },
+    // UPDATING -----------------------
+    saveEditUpdates(id, data) {
+      console.log("Save clicked");
+      RecipeDataService.update(id, data)
+        // TODO:
+        .then(() => {
+          console.log(id, data);
+        })
+        .catch((err) => {
+          console.warn(`Error when updating reciped with id: ${id}. ${err}`);
+        });
     },
   },
 };

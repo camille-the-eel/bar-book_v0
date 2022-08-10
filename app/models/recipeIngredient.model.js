@@ -3,7 +3,13 @@
 
 module.exports = (sequelize, Sequelize) => {
   const RecipeIngredient = sequelize.define("recipeIngredient", {
-    placeholder: {
+    measurementQty: {
+      type: Sequelize.STRING,
+    },
+    measurementUnit: {
+      type: Sequelize.STRING,
+    },
+    ingredient: {
       type: Sequelize.STRING,
     },
   });

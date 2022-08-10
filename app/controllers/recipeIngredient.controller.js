@@ -4,7 +4,9 @@ const RecipeIngredient = db.recipeIngredients;
 exports.createRecipeIngredient = (req, res) => {
   console.log("New", req.body);
   return RecipeIngredient.create({
-    placeholder: req.body.placeholder,
+    measurementQty: req.body.measurementQty,
+    measurementUnit: req.body.measurementUnit,
+    ingredient: req.body.ingredient,
     recipeId: req.body.recipeId,
   })
     .then((data) => {

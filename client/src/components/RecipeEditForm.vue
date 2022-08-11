@@ -29,7 +29,7 @@
       </tr>
       <button
         class="update-recipe-btn"
-        @click="saveEditsClick(recipe.id, recipe)"
+        @click="saveEditsClick(recipe.id, this.updatedRecipe)"
       >
         Save
       </button>
@@ -42,6 +42,14 @@ export default {
   name: "RecipeEditForm",
   props: {
     recipe: Object,
+  },
+  data() {
+    return {
+      updatedRecipe: {
+        drinkName: "Fresh Martini ",
+        description: "A twist on the classic.",
+      },
+    };
   },
   emits: {
     "exit-edit-click": function () {

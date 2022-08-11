@@ -24,10 +24,10 @@ exports.create = (req, res) => {
     glass: req.body.glass,
     ingredientItems: req.body.ingredientItems,
     instructions: req.body.instructions,
-    draft: req.body.draft ? req.body.draft : false,
-    published: req.body.published ? req.body.published : false,
+    draft: req.body.draft || false,
+    published: req.body.published || false,
     creatorAttribution: req.body.creatorAttribution,
-    yearCreated: req.body.yearCreated ? req.body.yearCreated : null,
+    yearCreated: req.body.yearCreated || null,
     otherInfo: req.body.otherInfo,
   };
 
@@ -52,6 +52,7 @@ exports.create = (req, res) => {
     });
 
   /*
+  // Secondary table to join
   req.body.ingredientItems.forEach((el) => {
     RecipeIngredient.create({
       measurementQty: el.measurement_qty,
@@ -112,7 +113,7 @@ exports.findOne = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: `Error retrieving Recipe with id of ${id}.`,
+        message: `Error retrieving Recipe with id of ${id}. ${err}`,
       });
     });
 };
@@ -120,15 +121,22 @@ exports.findOne = (req, res) => {
 // Update a recipe by id (in the req)
 exports.update = (req, res) => {
   const id = req.params.id;
-  Recipe.update({
-    where: { id: id },
-  })
-    .then((n) => {
-      if (n === 1) {
-        res.send({ message: "Recipe was updated successfully." });
+  console.log("update body", req.body);
+
+  Recipe.update(
+    {
+      drinkName: req.body.drinkName,
+    },
+    {
+      where: { id: id },
+    }
+  )
+    .then((data) => {
+      if (data) {
+        res.send(data);
       } else {
-        res.send({
-          message: `Cannot update Recipe with id of ${id}. Perhaps Recipe was not found.`,
+        res.status(400).send({
+          message: `An issue occured with updating Recipe with id of ${id}.`,
         });
       }
     })

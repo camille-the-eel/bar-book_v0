@@ -53,7 +53,7 @@ export default {
     RecipeDataService.get(this.$route.params.id).then((res) => {
       this.recipe = res.data;
     });
-    console.log(this.recipe);
+    console.log("Mounted", this.recipe);
   },
   methods: {
     closeModal() {
@@ -92,11 +92,14 @@ export default {
       console.log("Save clicked");
       RecipeDataService.update(id, data)
         // TODO:
-        .then(() => {
-          console.log(id, data);
+        .then((res) => {
+          this.exitEditMode();
+          return res;
+          // console.log("RES", res);
+          // console.log("DATA", id, data);
         })
         .catch((err) => {
-          console.warn(`Error when updating reciped with id: ${id}. ${err}`);
+          console.warn(`Error when updating recipe with id: ${id}. ${err}`);
         });
     },
   },

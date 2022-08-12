@@ -2,13 +2,11 @@
 
 const db = require("../models");
 const Recipe = db.recipes;
-const RecipeIngredient = db.recipeIngredients;
+// const RecipeIngredient = db.recipeIngredients;
 const Op = db.Sequelize.Op;
 
 // Create and save new recipe
 exports.create = (req, res) => {
-  console.log("BODY", req.body);
-
   // Validate request
   if (!req.body.drinkName) {
     res.status(400).send({
@@ -19,23 +17,22 @@ exports.create = (req, res) => {
   // Create a Recipe
   let recipe = {
     drinkName: req.body.drinkName,
-    description: req.body.description,
-    garnish: req.body.garnish,
-    glass: req.body.glass,
-    ingredientItems: req.body.ingredientItems,
-    instructions: req.body.instructions,
+    description: req.body.description || null,
+    garnish: req.body.garnish || null,
+    glass: req.body.glass || null,
+    instructions: req.body.instructions || null,
     draft: req.body.draft || false,
     published: req.body.published || false,
-    creatorAttribution: req.body.creatorAttribution,
+    creatorAttribution: req.body.creatorAttribution || null,
     yearCreated: req.body.yearCreated || null,
-    otherInfo: req.body.otherInfo,
+    otherInfo: req.body.otherInfo || null,
   };
 
-  // TODO: set up proper data modeling handling, set these to recipeIngredient table, attach foreign key for each
+  // TODO: set up proper data modeling handling/normalization
   req.body.ingredientItems.forEach((el, i) => {
-    recipe[`ingredientItem${i}_Qty`] = el.measurement_qty;
-    recipe[`ingredientItem${i}_Unit`] = el.measurement_unit;
-    recipe[`ingredientItem${i}_Ingredient`] = el.ingredient;
+    recipe[`ingredientItem${i}_Qty`] = el.measurement_qty || 2;
+    recipe[`ingredientItem${i}_Unit`] = el.measurement_unit || oz;
+    recipe[`ingredientItem${i}_Ingredient`] = el.ingredient || gin;
   });
 
   // Save Recipe to database
@@ -121,11 +118,11 @@ exports.findOne = (req, res) => {
 // Update a recipe by id (in the req)
 exports.update = (req, res) => {
   const id = req.params.id;
-  console.log("update body", req.body);
+  console.log("BODY", req.body);
 
   Recipe.update(
     {
-      drinkName: req.body.drinkName,
+      ...req.body,
     },
     {
       where: { id: id },

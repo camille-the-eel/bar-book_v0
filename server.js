@@ -5,9 +5,7 @@ if (process.env.NODE_ENV !== "production") {
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const path = __dirname + "/app/views/";
 const app = express();
-app.use(express.static(path));
 let corsOptions = {
   origin: "http://localhost:8081",
 };
@@ -30,16 +28,13 @@ const db = require("./app/models");
 // db.sequelize.sync();
 
 // NOTE: Development only syncing of models
-// db.sequelize.sync({ force: true }).then(() => {
-//   console.log("Drop and re-sync db.");
-// });
+db.sequelize.sync({ force: true }).then(() => {
+  console.log("Drop and re-sync db.");
+});
 
-// Syncing of models
-db.sequelize.sync();
-
-// View files
-app.get("/", function (req, res) {
-  res.sendFile(path + "index.html");
+// Simple testing route
+app.get("/", (req, res) => {
+  res.json({ message: "Bar Book v0 running" });
 });
 
 // API routes

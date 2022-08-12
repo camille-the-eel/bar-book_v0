@@ -52,16 +52,16 @@ export default {
     RecipeDataService.get(this.$route.params.id).then((res) => {
       // TODO: change this
       let data = res.data;
-      // data.ingredients = [];
-      // for (let i = 0; i < 9; i++) {
-      //   if (data[`ingredientItem${i}_Ingredient`]) {
-      //     data.ingredients.push({
-      //       qty: data[`ingredientItem${i}_Qty`],
-      //       unit: data[`ingredientItem${i}_Unit`],
-      //       ingredient: data[`ingredientItem${i}_Ingredient`],
-      //     });
-      //   }
-      // }
+      data.ingredients = [];
+      for (let i = 0; i < 9; i++) {
+        if (data[`ingredientItem${i}_Ingredient`]) {
+          data.ingredients.push({
+            qty: data[`ingredientItem${i}_Qty`],
+            unit: data[`ingredientItem${i}_Unit`],
+            ingredient: data[`ingredientItem${i}_Ingredient`],
+          });
+        }
+      }
       this.recipe = data;
     });
   },

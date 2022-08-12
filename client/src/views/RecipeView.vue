@@ -8,7 +8,6 @@
       @close-modal="closeModal"
     ></ActionModal>
     <div class="recipe-container">
-      <h3>I am the recipe container.</h3>
       <RecipeDetails
         :recipe="this.recipe"
         v-if="this.recipe.id && !this.editingMode"

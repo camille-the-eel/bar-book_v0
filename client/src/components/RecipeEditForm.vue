@@ -73,7 +73,6 @@
       <button class="add-ingredient-btn" @click="addIngredientField">
         Add an ingredient
       </button>
-      <!-- TODO: dynamically add more ingredientItem form inputs? button? -->
       <div class="form-group">
         <label for="garnish">Garnish</label>
         <input

@@ -98,14 +98,14 @@
       </div>
       <div class="form-group">
         <label for="instructions">Instructions</label>
-        <input
+        <textarea
           type="text"
           class="form-control"
           id="instructions"
           :value="recipe.instructions"
           @input="(e) => (updatedRecipe.instructions = e.target.value)"
           name="instructions"
-        />
+        ></textarea>
       </div>
       <!-- TODO: default value should be set to recipe.draft, when true, checked -->
       <div class="form-group">
@@ -144,14 +144,14 @@
           <label for="other-info"
             >Fun facts or other information about this drink:</label
           >
-          <input
+          <textarea
             type="textarea"
             class="form-control"
             id="other-info"
             :value="recipe.otherInfo"
             @input="(e) => (updatedRecipe.otherInfo = e.target.value)"
             name="other-info"
-          />
+          ></textarea>
         </div>
         <br />
       </div>
@@ -200,6 +200,7 @@ export default {
         const newField = { qty: "", unit: "", ingredient: "" };
         this.localRecipeIngredients.push(newField);
       } else {
+        // TODO: remove alert, replace w dynamic html notice
         alert("We're sorry, you cannot add more ingredients at this time.");
       }
     },
@@ -207,6 +208,7 @@ export default {
       if (this.localRecipeIngredients.length > 2) {
         this.localRecipeIngredients.splice(i);
       } else {
+        // TODO: remove alert, replace w dynamic html notice
         alert(
           "We're sorry, you cannot have less than two ingredients in your drink."
         );

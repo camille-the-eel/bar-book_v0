@@ -287,13 +287,13 @@
       </div>
       <div class="form-group">
         <label for="instructions">Instructions</label>
-        <input
+        <textarea
           type="text"
           class="form-control"
           id="instructions"
           v-model.trim="recipe.instructions"
           name="instructions"
-        />
+        ></textarea>
       </div>
       <div class="form-group">
         <label for="draft">Tag this recipe as a draft?</label
@@ -328,13 +328,13 @@
           <label for="other-info"
             >Fun facts or other information about this drink:</label
           >
-          <input
+          <textarea
             type="textarea"
             class="form-control"
             id="other-info"
             v-model.trim="recipe.otherInfo"
             name="other-info"
-          />
+          ></textarea>
         </div>
         <br />
         <!-- <span class="draft-disclaimer"

@@ -30,9 +30,9 @@ exports.create = (req, res) => {
 
   // TODO: set up proper data modeling handling/normalization
   req.body.ingredientItems.forEach((el, i) => {
-    recipe[`ingredientItem${i}_Qty`] = el.measurement_qty || 2;
-    recipe[`ingredientItem${i}_Unit`] = el.measurement_unit || oz;
-    recipe[`ingredientItem${i}_Ingredient`] = el.ingredient || gin;
+    recipe[`ingredientItem${i}_Qty`] = el.measurement_qty;
+    recipe[`ingredientItem${i}_Unit`] = el.measurement_unit;
+    recipe[`ingredientItem${i}_Ingredient`] = el.ingredient;
   });
 
   // Save Recipe to database

@@ -2,7 +2,6 @@
   <div class="page-container">
     <div class="recipes-container">
       <div class="recipe" v-for="recipe in recipes" :key="recipe.id">
-        <!-- <router-link :to="`/recipes/${recipe.drinkName}+${recipe.id}`"> -->
         <router-link :to="`/recipes/${recipe.id}`">
           <tr class="drink-name-header">
             <th colspan="2">
@@ -10,17 +9,13 @@
             </th>
             <div :class="recipe.draft ? 'draft' : 'hidden'">DRAFT</div>
           </tr>
-          <tr>
-            <th>Qty unit</th>
-            <td>ingredient {{ recipe.ingredients }}</td>
-          </tr>
-          <tr>
-            <th>Qty unit</th>
-            <td>ingredient {{ recipe.ingredients }}</td>
-          </tr>
-          <tr>
-            <th>Qty unit</th>
-            <td>ingredient {{ recipe.ingredients }}</td>
+          <tr
+            class="ingredient-list"
+            v-for="(ingredientItem, i) in recipe.ingredients"
+            :key="i"
+          >
+            <th>{{ ingredientItem.qty }} {{ ingredientItem.unit }}</th>
+            <td>{{ ingredientItem.ingredient }}</td>
           </tr>
           <tr>
             <td colspan="2">
@@ -45,10 +40,25 @@ export default {
   },
   mounted() {
     RecipeDataService.getAll().then((res) => {
-      this.recipes = [...res.data];
+      const data = [...res.data];
+      // This is really not ideal, update once data normalization is complete
+      data.forEach(function (el) {
+        el.ingredients = [];
+        for (let l = 0; l < 9; l++) {
+          if (el[`ingredientItem${l}_Ingredient`]) {
+            el.ingredients.push({
+              qty: el[`ingredientItem${l}_Qty`],
+              unit: el[`ingredientItem${l}_Unit`],
+              ingredient: el[`ingredientItem${l}_Ingredient`],
+            });
+          }
+        }
+      });
+
+      this.recipes = data;
+      // this.recipes = [...res.data];
     });
   },
-  methods: {},
 };
 </script>
 

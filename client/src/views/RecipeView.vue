@@ -51,11 +51,40 @@ export default {
   },
   mounted() {
     RecipeDataService.get(this.$route.params.id).then((res) => {
-      this.recipe = res.data;
+      // TODO: change this
+      let data = res.data;
+      data.ingredients = [];
+      for (let i = 0; i < 9; i++) {
+        if (data[`ingredientItem${i}_Ingredient`]) {
+          data.ingredients.push({
+            qty: data[`ingredientItem${i}_Qty`],
+            unit: data[`ingredientItem${i}_Unit`],
+            ingredient: data[`ingredientItem${i}_Ingredient`],
+          });
+        }
+      }
+      this.recipe = data;
     });
-    console.log("Mounted", this.recipe);
   },
   methods: {
+    getRecipeDetails(id) {
+      RecipeDataService.get(id).then((res) => {
+        // this.recipe = res.data;
+        // TODO: definitely need a better way for this
+        let data = res.data;
+        data.ingredients = [];
+        for (let i = 0; i < 9; i++) {
+          if (data[`ingredientItem${i}_Ingredient`]) {
+            data.ingredients.push({
+              qty: data[`ingredientItem${i}_Qty`],
+              unit: data[`ingredientItem${i}_Unit`],
+              ingredient: data[`ingredientItem${i}_Ingredient`],
+            });
+          }
+        }
+        this.recipe = data;
+      });
+    },
     closeModal() {
       this.modalShow = false;
     },
@@ -89,14 +118,11 @@ export default {
     },
     // UPDATING -----------------------
     saveEditUpdates(id, data) {
-      console.log("Save clicked");
       RecipeDataService.update(id, data)
-        // TODO:
-        .then((res) => {
+        .then(() => {
+          //TODO: asynchronous
+          this.getRecipeDetails(id);
           this.exitEditMode();
-          return res;
-          // console.log("RES", res);
-          // console.log("DATA", id, data);
         })
         .catch((err) => {
           console.warn(`Error when updating recipe with id: ${id}. ${err}`);

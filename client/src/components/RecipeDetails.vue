@@ -1,5 +1,6 @@
 <template>
   <div class="recipe-details-container">
+    <h3>DETAIL VIEW ONLY COMPONENT</h3>
     <div class="recipe">
       <EditButton class="edit-recipe-btn" @click="enterEditMode(recipe.id)" />
       <DeleteButton
@@ -17,9 +18,23 @@
           {{ recipe.description }}
         </td>
       </tr>
+      <tr
+        class="ingredient-list"
+        v-for="(ingredientItem, i) in recipe.ingredients"
+        :key="i"
+      >
+        <th>{{ ingredientItem.qty }} {{ ingredientItem.unit }}</th>
+        <td>{{ ingredientItem.ingredient }}</td>
+      </tr>
       <tr>
-        <th>Qty unit</th>
-        <td>ingredient {{ recipe.ingredients }}</td>
+        <td colspan="2">
+          {{ recipe.garnish }}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          {{ recipe.glass }}
+        </td>
       </tr>
       <tr>
         <td colspan="2">
@@ -29,6 +44,21 @@
       <tr>
         <td colspan="2">
           {{ recipe.yearCreated }}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          {{ recipe.otherInfo }}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          {{ recipe.creatorAttribution }}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          {{ recipe.published }}
         </td>
       </tr>
     </div>

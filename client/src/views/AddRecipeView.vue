@@ -1,5 +1,5 @@
 <template>
-  <h3>Update and expand this form, sheeeeh.</h3>
+  <h3>Add your recipe</h3>
   <div class="submit-form">
     <div v-if="!submitted">
       <div class="form-group">
@@ -9,7 +9,7 @@
           class="form-control"
           id="drink-name"
           required
-          v-model="recipe.drinkName"
+          v-model.trim="recipe.drinkName"
           name="drink-name"
         />
       </div>
@@ -19,18 +19,17 @@
           type="text"
           class="form-control"
           id="description"
-          v-model="recipe.description"
+          v-model.trim="recipe.description"
           name="description"
         />
       </div>
-      <!-- add in ingredients here -->
       <div class="form-group">
         <label for="qty">Qty</label>
         <input
           type="text"
           class="form-control"
           id="qty"
-          v-model="recipe.recipeIngredientItems[0].measurement_qty"
+          v-model.trim="recipe.recipeIngredientItems[0].measurement_qty"
           name="qty"
         />
         <label for="unit">Unit</label>
@@ -38,7 +37,7 @@
           type="text"
           class="form-control"
           id="unit"
-          v-model="recipe.recipeIngredientItems[0].measurement_unit"
+          v-model.trim="recipe.recipeIngredientItems[0].measurement_unit"
           name="unit"
         />
         <label for="ingredient">Ingredient</label>
@@ -46,19 +45,46 @@
           type="text"
           class="form-control"
           id="ingredient"
-          v-model="recipe.recipeIngredientItems[0].ingredient"
+          v-model.trim="recipe.recipeIngredientItems[0].ingredient"
           name="ingredient"
           required
         />
       </div>
 
       <div class="form-group">
+        <label for="qty1">Qty</label>
+        <input
+          type="text"
+          class="form-control"
+          id="qty1"
+          v-model.trim="recipe.recipeIngredientItems[1].measurement_qty"
+          name="qty"
+        />
+        <label for="unit1">Unit</label>
+        <input
+          type="text"
+          class="form-control"
+          id="unit1"
+          v-model.trim="recipe.recipeIngredientItems[1].measurement_unit"
+          name="unit"
+        />
+        <label for="ingredient1">Ingredient</label>
+        <input
+          type="text"
+          class="form-control"
+          id="ingredient1"
+          v-model.trim="recipe.recipeIngredientItems[1].ingredient"
+          name="ingredient"
+          required
+        />
+      </div>
+      <div class="form-group">
         <label for="qty2">Qty</label>
         <input
           type="text"
           class="form-control"
           id="qty2"
-          v-model="recipe.recipeIngredientItems[1].measurement_qty"
+          v-model.trim="recipe.recipeIngredientItems[2].measurement_qty"
           name="qty"
         />
         <label for="unit2">Unit</label>
@@ -66,7 +92,7 @@
           type="text"
           class="form-control"
           id="unit2"
-          v-model="recipe.recipeIngredientItems[1].measurement_unit"
+          v-model.trim="recipe.recipeIngredientItems[2].measurement_unit"
           name="unit"
         />
         <label for="ingredient2">Ingredient</label>
@@ -74,18 +100,178 @@
           type="text"
           class="form-control"
           id="ingredient2"
-          v-model="recipe.recipeIngredientItems[1].ingredient"
+          v-model.trim="recipe.recipeIngredientItems[2].ingredient"
           name="ingredient"
           required
         />
       </div>
+      <div class="form-group">
+        <label for="qty3">Qty</label>
+        <input
+          type="text"
+          class="form-control"
+          id="qty3"
+          v-model.trim="recipe.recipeIngredientItems[3].measurement_qty"
+          name="qty"
+        />
+        <label for="unit3">Unit</label>
+        <input
+          type="text"
+          class="form-control"
+          id="unit3"
+          v-model.trim="recipe.recipeIngredientItems[3].measurement_unit"
+          name="unit"
+        />
+        <label for="ingredient3">Ingredient</label>
+        <input
+          type="text"
+          class="form-control"
+          id="ingredient3"
+          v-model.trim="recipe.recipeIngredientItems[3].ingredient"
+          name="ingredient"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="qty4">Qty</label>
+        <input
+          type="text"
+          class="form-control"
+          id="qty4"
+          v-model.trim="recipe.recipeIngredientItems[4].measurement_qty"
+          name="qty"
+        />
+        <label for="unit4">Unit</label>
+        <input
+          type="text"
+          class="form-control"
+          id="unit4"
+          v-model.trim="recipe.recipeIngredientItems[4].measurement_unit"
+          name="unit"
+        />
+        <label for="ingredient4">Ingredient</label>
+        <input
+          type="text"
+          class="form-control"
+          id="ingredient4"
+          v-model.trim="recipe.recipeIngredientItems[4].ingredient"
+          name="ingredient"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="qty5">Qty</label>
+        <input
+          type="text"
+          class="form-control"
+          id="qty5"
+          v-model.trim="recipe.recipeIngredientItems[5].measurement_qty"
+          name="qty"
+        />
+        <label for="unit5">Unit</label>
+        <input
+          type="text"
+          class="form-control"
+          id="unit5"
+          v-model.trim="recipe.recipeIngredientItems[5].measurement_unit"
+          name="unit"
+        />
+        <label for="ingredient5">Ingredient</label>
+        <input
+          type="text"
+          class="form-control"
+          id="ingredient5"
+          v-model.trim="recipe.recipeIngredientItems[5].ingredient"
+          name="ingredient"
+        />
+      </div>
+      <div class="form-group">
+        <label for="qty6">Qty</label>
+        <input
+          type="text"
+          class="form-control"
+          id="qty6"
+          v-model.trim="recipe.recipeIngredientItems[6].measurement_qty"
+          name="qty"
+        />
+        <label for="unit6">Unit</label>
+        <input
+          type="text"
+          class="form-control"
+          id="unit6"
+          v-model.trim="recipe.recipeIngredientItems[6].measurement_unit"
+          name="unit"
+        />
+        <label for="ingredient6">Ingredient</label>
+        <input
+          type="text"
+          class="form-control"
+          id="ingredient6"
+          v-model.trim="recipe.recipeIngredientItems[6].ingredient"
+          name="ingredient"
+        />
+      </div>
+      <div class="form-group">
+        <label for="qty7">Qty</label>
+        <input
+          type="text"
+          class="form-control"
+          id="qty7"
+          v-model.trim="recipe.recipeIngredientItems[7].measurement_qty"
+          name="qty"
+        />
+        <label for="unit7">Unit</label>
+        <input
+          type="text"
+          class="form-control"
+          id="unit7"
+          v-model.trim="recipe.recipeIngredientItems[7].measurement_unit"
+          name="unit"
+        />
+        <label for="ingredient7">Ingredient</label>
+        <input
+          type="text"
+          class="form-control"
+          id="ingredient7"
+          v-model.trim="recipe.recipeIngredientItems[7].ingredient"
+          name="ingredient"
+        />
+      </div>
+      <div class="form-group">
+        <label for="qty8">Qty</label>
+        <input
+          type="text"
+          class="form-control"
+          id="qty8"
+          v-model.trim="recipe.recipeIngredientItems[8].measurement_qty"
+          name="qty"
+        />
+        <label for="unit8">Unit</label>
+        <input
+          type="text"
+          class="form-control"
+          id="unit8"
+          v-model.trim="recipe.recipeIngredientItems[8].measurement_unit"
+          name="unit"
+        />
+        <label for="ingredient8">Ingredient</label>
+        <input
+          type="text"
+          class="form-control"
+          id="ingredient8"
+          v-model.trim="recipe.recipeIngredientItems[8].ingredient"
+          name="ingredient"
+        />
+      </div>
+
       <div class="form-group">
         <label for="garnish">Garnish</label>
         <input
           type="text"
           class="form-control"
           id="garnish"
-          v-model="recipe.garnish"
+          v-model.trim="recipe.garnish"
           name="garnish"
         />
       </div>
@@ -95,7 +281,7 @@
           type="text"
           class="form-control"
           id="glass"
-          v-model="recipe.glass"
+          v-model.trim="recipe.glass"
           name="glass"
         />
       </div>
@@ -105,7 +291,7 @@
           type="text"
           class="form-control"
           id="instructions"
-          v-model="recipe.instructions"
+          v-model.trim="recipe.instructions"
           name="instructions"
         />
       </div>
@@ -124,7 +310,7 @@
             type="text"
             class="form-control"
             id="creator-attribution"
-            v-model="recipe.creatorAttribution"
+            v-model.trim="recipe.creatorAttribution"
             name="creator-attribution"
           />
         </div>
@@ -134,7 +320,7 @@
             type="text"
             class="form-control"
             id="year-created"
-            v-model="recipe.yearCreated"
+            v-model.trim="recipe.yearCreated"
             name="year-created"
           />
         </div>
@@ -146,7 +332,7 @@
             type="textarea"
             class="form-control"
             id="other-info"
-            v-model="recipe.otherInfo"
+            v-model.trim="recipe.otherInfo"
             name="other-info"
           />
         </div>
@@ -157,7 +343,7 @@
         > -->
       </div>
       <br />
-      <button @click="saveRecipe" class="success-button">Add Recipe</button>
+      <button @click="saveRecipe" class="success-btn">Add Recipe</button>
       <br />
       <span class="add-disclaimer-1"
         >Does not publish recipe. Adds to personal book only.</span
@@ -165,7 +351,7 @@
     </div>
     <div v-else>
       <h4>You have successfully added the recipe to your personal book!</h4>
-      <button class="add-more-button" @click="newRecipe">Add Another</button>
+      <button class="add-more-btn" @click="newRecipe">Add Another</button>
     </div>
   </div>
 </template>
@@ -181,6 +367,41 @@ export default {
         drinkName: "",
         description: "",
         recipeIngredientItems: [
+          {
+            measurement_qty: null,
+            measurement_unit: "",
+            ingredient: "",
+          },
+          {
+            measurement_qty: null,
+            measurement_unit: "",
+            ingredient: "",
+          },
+          {
+            measurement_qty: null,
+            measurement_unit: "",
+            ingredient: "",
+          },
+          {
+            measurement_qty: null,
+            measurement_unit: "",
+            ingredient: "",
+          },
+          {
+            measurement_qty: null,
+            measurement_unit: "",
+            ingredient: "",
+          },
+          {
+            measurement_qty: null,
+            measurement_unit: "",
+            ingredient: "",
+          },
+          {
+            measurement_qty: null,
+            measurement_unit: "",
+            ingredient: "",
+          },
           {
             measurement_qty: null,
             measurement_unit: "",
@@ -238,6 +459,41 @@ export default {
         drinkName: "",
         description: "",
         recipeIngredientItems: [
+          {
+            measurement_qty: null,
+            measurement_unit: "",
+            ingredient: "",
+          },
+          {
+            measurement_qty: null,
+            measurement_unit: "",
+            ingredient: "",
+          },
+          {
+            measurement_qty: null,
+            measurement_unit: "",
+            ingredient: "",
+          },
+          {
+            measurement_qty: null,
+            measurement_unit: "",
+            ingredient: "",
+          },
+          {
+            measurement_qty: null,
+            measurement_unit: "",
+            ingredient: "",
+          },
+          {
+            measurement_qty: null,
+            measurement_unit: "",
+            ingredient: "",
+          },
+          {
+            measurement_qty: null,
+            measurement_unit: "",
+            ingredient: "",
+          },
           {
             measurement_qty: null,
             measurement_unit: "",

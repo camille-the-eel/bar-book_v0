@@ -518,3 +518,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.form-group {
+  margin-bottom: 7px;
+}
+
+label {
+  margin: 0 5px;
+}
+</style>

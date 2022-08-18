@@ -3,16 +3,18 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const express = require("express");
+const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
-let corsOptions = {
-  origin: "http://localhost:8081",
-};
+// let corsOptions = {
+//   origin: "http://localhost:8081",
+// };
 
 // Middleware -------------------
 // Enables CORS with options
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(cors());
 
 // Parse requests of content-type: application/json
 app.use(bodyParser.json());
@@ -20,6 +22,8 @@ app.use(bodyParser.json());
 // Parse requests of content-type: application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 // ----------------------------
+
+app.use(express.static(path.join(__dirname, "./client/dist")));
 
 // Pulls in all model files so they can be synced within this one line of code (rather than individually in each file)
 // Holds all the sequelize mapping to the tables in our mysql database
@@ -34,7 +38,9 @@ db.sequelize.sync({ force: true }).then(() => {
 
 // Simple testing route
 app.get("/", (req, res) => {
-  res.json({ message: "Bar Book v0 running" });
+  // Simple testing route
+  // res.json({ message: "Bar Book v0 running" });
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
 // API routes

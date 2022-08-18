@@ -5,25 +5,25 @@ import http from "../http-common";
 
 class RecipeDataService {
   getAll() {
-    return http.get("/recipes");
+    return http.get("/api/recipes");
   }
   get(id) {
-    return http.get(`/recipes/${id}`);
+    return http.get(`/api/recipes/${id}`);
   }
   create(data) {
-    return http.post("/recipes", data);
+    return http.post("/api/recipes", data);
   }
   update(id, data) {
-    return http.put(`/recipes/${id}`, data);
+    return http.put(`/api/recipes/${id}`, data);
   }
   delete(id) {
-    return http.delete(`/recipes/${id}`);
+    return http.delete(`/api/recipes/${id}`);
   }
   deleteAll() {
-    return http.delete(`/recipes`);
+    return http.delete(`/api/recipes`);
   }
   findByDrinkName(drinkName) {
-    return http.get(`/recipes?drinkName=${drinkName}`);
+    return http.get(`/api/recipes?drinkName=${drinkName}`);
   }
 }
 

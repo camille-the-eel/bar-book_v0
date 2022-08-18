@@ -2,10 +2,11 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL:
-    process.env.NODE_ENV === "production"
-      ? "https://bar-book-v0.herokuapp.com/api"
-      : "http://localhost:8080/api",
+  // baseURL: "http://localhost:8080",
+  baseURL: "https://bar-book-v0.herokuapp.com",
+  // process.env.NODE_ENV === "production"
+  //   ? "https://bar-book-v0.herokuapp.com"
+  //   : "http://localhost:8080",
   headers: {
     "Content-type": "application/json",
   },

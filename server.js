@@ -40,7 +40,7 @@ db.sequelize.sync({ force: true }).then(() => {
 app.get("/", (req, res) => {
   // Simple testing route
   // res.json({ message: "Bar Book v0 running" });
-  res.sendFile(path.join(__dirname, "./client/dist/index.html"));
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
 // API routes

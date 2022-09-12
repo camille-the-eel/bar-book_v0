@@ -108,7 +108,7 @@
       </div>
       <!-- TODO: default value should be set to recipe.draft, when true, checked -->
       <div class="form-group">
-        <label for="draft">Tag this recipe as a draft?</label
+        <!-- <label for="draft">Tag this recipe as a draft?</label
         ><input
           type="checkbox"
           class="form-control"
@@ -116,7 +116,7 @@
           :checked="recipe.draft"
           v-model="updatedRecipe.draft"
           name="draft"
-        />
+        /> -->
         <div class="form-group">
           <label for="creator-attribution">Creator Attribution</label>
           <input

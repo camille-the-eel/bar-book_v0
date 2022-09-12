@@ -24,29 +24,29 @@
         />
       </div>
       <div class="form-group">
-        <label for="qty">Qty</label>
+        <label for="qty0">Qty</label>
         <input
           type="text"
           class="form-control"
           id="qty"
           v-model.trim="recipe.recipeIngredientItems[0].measurement_qty"
-          name="qty"
+          name="qty0"
         />
-        <label for="unit">Unit</label>
+        <label for="unit0">Unit</label>
         <input
           type="text"
           class="form-control"
           id="unit"
           v-model.trim="recipe.recipeIngredientItems[0].measurement_unit"
-          name="unit"
+          name="unit0"
         />
-        <label for="ingredient">Ingredient</label>
+        <label for="ingredient0">Ingredient</label>
         <input
           type="text"
           class="form-control"
           id="ingredient"
           v-model.trim="recipe.recipeIngredientItems[0].ingredient"
-          name="ingredient"
+          name="ingredient0"
           required
         />
       </div>
@@ -58,7 +58,7 @@
           class="form-control"
           id="qty1"
           v-model.trim="recipe.recipeIngredientItems[1].measurement_qty"
-          name="qty"
+          name="qty1"
         />
         <label for="unit1">Unit</label>
         <input
@@ -66,7 +66,7 @@
           class="form-control"
           id="unit1"
           v-model.trim="recipe.recipeIngredientItems[1].measurement_unit"
-          name="unit"
+          name="unit1"
         />
         <label for="ingredient1">Ingredient</label>
         <input
@@ -74,7 +74,7 @@
           class="form-control"
           id="ingredient1"
           v-model.trim="recipe.recipeIngredientItems[1].ingredient"
-          name="ingredient"
+          name="ingredient1"
           required
         />
       </div>
@@ -85,7 +85,7 @@
           class="form-control"
           id="qty2"
           v-model.trim="recipe.recipeIngredientItems[2].measurement_qty"
-          name="qty"
+          name="qty2"
         />
         <label for="unit2">Unit</label>
         <input
@@ -93,7 +93,7 @@
           class="form-control"
           id="unit2"
           v-model.trim="recipe.recipeIngredientItems[2].measurement_unit"
-          name="unit"
+          name="unit2"
         />
         <label for="ingredient2">Ingredient</label>
         <input
@@ -101,7 +101,7 @@
           class="form-control"
           id="ingredient2"
           v-model.trim="recipe.recipeIngredientItems[2].ingredient"
-          name="ingredient"
+          name="ingredient2"
           required
         />
       </div>
@@ -112,7 +112,7 @@
           class="form-control"
           id="qty3"
           v-model.trim="recipe.recipeIngredientItems[3].measurement_qty"
-          name="qty"
+          name="qty3"
         />
         <label for="unit3">Unit</label>
         <input
@@ -120,7 +120,7 @@
           class="form-control"
           id="unit3"
           v-model.trim="recipe.recipeIngredientItems[3].measurement_unit"
-          name="unit"
+          name="unit3"
         />
         <label for="ingredient3">Ingredient</label>
         <input
@@ -128,7 +128,7 @@
           class="form-control"
           id="ingredient3"
           v-model.trim="recipe.recipeIngredientItems[3].ingredient"
-          name="ingredient"
+          name="ingredient3"
           required
         />
       </div>
@@ -139,7 +139,7 @@
           class="form-control"
           id="qty4"
           v-model.trim="recipe.recipeIngredientItems[4].measurement_qty"
-          name="qty"
+          name="qty4"
         />
         <label for="unit4">Unit</label>
         <input
@@ -147,7 +147,7 @@
           class="form-control"
           id="unit4"
           v-model.trim="recipe.recipeIngredientItems[4].measurement_unit"
-          name="unit"
+          name="unit4"
         />
         <label for="ingredient4">Ingredient</label>
         <input
@@ -155,7 +155,7 @@
           class="form-control"
           id="ingredient4"
           v-model.trim="recipe.recipeIngredientItems[4].ingredient"
-          name="ingredient"
+          name="ingredient4"
           required
         />
       </div>
@@ -167,7 +167,7 @@
           class="form-control"
           id="qty5"
           v-model.trim="recipe.recipeIngredientItems[5].measurement_qty"
-          name="qty"
+          name="qty5"
         />
         <label for="unit5">Unit</label>
         <input
@@ -175,7 +175,7 @@
           class="form-control"
           id="unit5"
           v-model.trim="recipe.recipeIngredientItems[5].measurement_unit"
-          name="unit"
+          name="unit5"
         />
         <label for="ingredient5">Ingredient</label>
         <input
@@ -183,7 +183,7 @@
           class="form-control"
           id="ingredient5"
           v-model.trim="recipe.recipeIngredientItems[5].ingredient"
-          name="ingredient"
+          name="ingredient5"
         />
       </div>
       <div class="form-group">
@@ -193,7 +193,7 @@
           class="form-control"
           id="qty6"
           v-model.trim="recipe.recipeIngredientItems[6].measurement_qty"
-          name="qty"
+          name="qty6"
         />
         <label for="unit6">Unit</label>
         <input
@@ -201,7 +201,7 @@
           class="form-control"
           id="unit6"
           v-model.trim="recipe.recipeIngredientItems[6].measurement_unit"
-          name="unit"
+          name="unit6"
         />
         <label for="ingredient6">Ingredient</label>
         <input
@@ -209,7 +209,7 @@
           class="form-control"
           id="ingredient6"
           v-model.trim="recipe.recipeIngredientItems[6].ingredient"
-          name="ingredient"
+          name="ingredient6"
         />
       </div>
       <div class="form-group">
@@ -219,7 +219,7 @@
           class="form-control"
           id="qty7"
           v-model.trim="recipe.recipeIngredientItems[7].measurement_qty"
-          name="qty"
+          name="qty7"
         />
         <label for="unit7">Unit</label>
         <input
@@ -227,7 +227,7 @@
           class="form-control"
           id="unit7"
           v-model.trim="recipe.recipeIngredientItems[7].measurement_unit"
-          name="unit"
+          name="unit7"
         />
         <label for="ingredient7">Ingredient</label>
         <input
@@ -235,7 +235,7 @@
           class="form-control"
           id="ingredient7"
           v-model.trim="recipe.recipeIngredientItems[7].ingredient"
-          name="ingredient"
+          name="ingredient7"
         />
       </div>
       <div class="form-group">
@@ -245,7 +245,7 @@
           class="form-control"
           id="qty8"
           v-model.trim="recipe.recipeIngredientItems[8].measurement_qty"
-          name="qty"
+          name="qty8"
         />
         <label for="unit8">Unit</label>
         <input
@@ -253,7 +253,7 @@
           class="form-control"
           id="unit8"
           v-model.trim="recipe.recipeIngredientItems[8].measurement_unit"
-          name="unit"
+          name="unit8"
         />
         <label for="ingredient8">Ingredient</label>
         <input
@@ -261,7 +261,7 @@
           class="form-control"
           id="ingredient8"
           v-model.trim="recipe.recipeIngredientItems[8].ingredient"
-          name="ingredient"
+          name="ingredient8"
         />
       </div>
 

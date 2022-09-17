@@ -1,0 +1,112 @@
+/*
+ Major form components:
+label
+input
+  text
+  checkbox
+  textarea
+span
+delete button (for ingredients and such)
+add button (for ingredients and such)
+sumbit button
+fraction vs decimal option
+
+
+*/
+
+form {
+  text-align: left;
+  margin: 2rem 7%;
+  box-sizing: border-box;
+}
+
+.form-group {
+  margin-bottom: 0.7rem;
+}
+
+/* To make form styling consistent with base css */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 62.5%;
+}
+
+label {
+  display: block;
+  font-family: neue-haas-grotesk-display, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 1.8rem;
+  margin-left: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+
+.inline-label {
+  display: inline;
+}
+
+input,
+textarea {
+  font-size: 1.6rem;
+  font-family: neue-haas-grotesk-text, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  border: 0.1rem solid var(--color-accent-medium-light);
+  margin: 0;
+  width: 90%;
+  max-width: 400px;
+  background: none;
+}
+
+input {
+  height: 3rem;
+  border-radius: 2rem;
+  padding-left: 1rem;
+}
+
+textarea {
+  border-radius: 0.5rem;
+  height: 8rem;
+  display: block;
+  overflow: auto;
+  padding-top: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+input:focus,
+textarea:focus {
+  /* outline: 0.1rem solid var(--color-accent-medium-dark); */
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.ingredient-item input {
+  width: initial;
+}
+
+input[type="checkbox"] {
+  height: 1.8rem;
+  width: 1.8rem;
+}
+
+.inline-checkbox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ingredient-item {
+  display: flex;
+  column-gap: 0.8rem;
+  row-gap: 1.6rem;
+  align-items: flex-end;
+}
+
+.form-list-btn {
+  border: none;
+  background: none;
+  padding: 0;
+  margin-left: -0.4rem;
+}

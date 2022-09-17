@@ -1,0 +1,144 @@
+/* 
+--TYPOGRAPHIC SCALE
+[Perfect Fourth - 1.333]
+9 / 12 / 16 / 21 / 28 / 38 / 50 / 67
+
+--LINE HEIGHTS
+
+
+--LETTER SPACING
+
+
+font-family: neue-haas-grotesk-display, sans-serif;
+font-weight: 200/400/700;
+
+
+
+font-family: neue-haas-grotesk-text, sans-serif;
+font-weight: 400/700;
+
+*/
+
+:root {
+  --color-text: #363434;
+  --color-accent-dark: #363434;
+  --color-accent-medium-dark: #4b4848;
+  --color-accent-medium: #7b7b7b;
+  --color-accent-medium-light: #999898;
+  --color-accent-light: #d8d8d8;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  font-weight: normal;
+}
+
+html {
+  /* 10px / 16px (default) = 62.5% */
+  font-size: 62.5%;
+}
+
+body {
+  color: var(--color-text);
+  line-height: 1.6;
+  font-family: neue-haas-grotesk-text, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.6rem;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: neue-haas-grotesk-display, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+h1 {
+  font-size: 6.7rem;
+  line-height: 140%;
+  margin: 0;
+}
+
+h2 {
+  font-size: 5rem;
+  line-height: 125%;
+  margin: 0;
+}
+
+h3 {
+  font-size: 3.8rem;
+  line-height: 110%;
+  margin: 0;
+}
+
+h4 {
+  font-size: 2.8rem;
+  margin: 0;
+}
+
+h5 {
+  font-size: 2.1rem;
+  margin: 0;
+}
+
+h6 {
+  letter-spacing: 0.3rem;
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+
+.hero-icons {
+  width: 2.5rem;
+}
+
+/* 50px and 249px */
+@media (min-width: 3.125em) and (max-width: 15.5em) {
+  h1 {
+    font-size: 1.75em;
+    line-height: 130%;
+  }
+  h6 {
+    font-size: 0.75em;
+  }
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+/* a:focus {
+  box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 2px 2px;
+  border-radius: 10%;
+} */
+
+@keyframes rotation-forward {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes rotation-backward {
+  from {
+    transform: rotate(359deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}

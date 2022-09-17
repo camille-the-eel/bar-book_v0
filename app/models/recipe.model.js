@@ -128,7 +128,6 @@ module.exports = (sequelize, Sequelize) => {
     ingredientItem8_Ingredient: {
       type: Sequelize.STRING,
     },
-    /*
     ingredientItem9_Qty: {
       type: Sequelize.STRING,
     },
@@ -192,7 +191,6 @@ module.exports = (sequelize, Sequelize) => {
     ingredientItem15_Ingredient: {
       type: Sequelize.STRING,
     },
-    */
   });
   return Recipe;
 };

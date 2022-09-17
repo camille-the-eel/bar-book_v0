@@ -5,7 +5,7 @@
 <script>
 import { TrashIcon } from "@heroicons/vue/outline";
 export default {
-  name: "DeleteButton",
+  name: "TrashcanIcon",
   components: {
     TrashIcon,
   },

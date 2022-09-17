@@ -1,25 +1,17 @@
 <template>
-  <nav>
-    <RouterLink to="/">Home</RouterLink> |
-    <RouterLink to="/recipes">Browse Recipes</RouterLink> |
-    <RouterLink to="/add">Add a Recipe</RouterLink>
-  </nav>
+  <TheNav />
   <RouterView />
 </template>
 
 <script>
-import { RouterLink, RouterView } from "vue-router";
+import TheNav from "@/components/Nav/TheNav.vue";
+import { RouterView } from "vue-router";
 
 export default {
   name: "app",
   components: {
-    RouterLink,
+    TheNav,
     RouterView,
-  },
-  methods: {
-    check() {
-      console.log("clicked");
-    },
   },
 };
 </script>
@@ -32,4 +24,8 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+
+@import "../src/assets/reset.css";
+@import "../src/assets/base.css";
+@import "../src/assets/form.css";
 </style>

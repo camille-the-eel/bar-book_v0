@@ -40,9 +40,12 @@ db.sequelize.sync({ force: true }).then(() => {
 // Simple testing route
 app.get("/", (req, res) => {
   // Simple testing route
-  // res.json({ message: "Bar Book v0 running" });
+  if (process.env.NODE_ENV === "development") {
+    res.json({ message: "Bar Book v0 running" });
+  } else {
+    res.sendFile(path.join(__dirname, "/app/views/index.html"));
+  }
   // res.sendFile(path.join(__dirname, "./client/build/index.html"));
-  res.sendFile(path.join(__dirname, "/app/views/index.html"));
 });
 
 // API routes

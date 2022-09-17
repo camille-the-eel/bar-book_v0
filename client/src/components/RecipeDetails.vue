@@ -2,8 +2,8 @@
   <div class="recipe-details-container">
     <h3>DETAIL VIEW ONLY COMPONENT</h3>
     <div class="recipe">
-      <EditButton class="edit-recipe-btn" @click="enterEditMode(recipe.id)" />
-      <DeleteButton
+      <EditIcon class="edit-recipe-btn" @click="enterEditMode(recipe.id)" />
+      <TrashcanIcon
         class="delete-recipe-btn"
         @click="deleteRecipeClick(recipe.id)"
       />
@@ -66,13 +66,13 @@
 </template>
 
 <script>
-import DeleteButton from "@/components/DeleteButton.vue";
-import EditButton from "@/components/EditButton.vue";
+import EditIcon from "@/components/icons/EditIcon.vue";
+import TrashcanIcon from "@/components/icons/TrashcanIcon.vue";
 // import RecipeDataService from "../services/RecipeDataService";
 
 export default {
   name: "RecipeDetails",
-  components: { DeleteButton, EditButton },
+  components: { EditIcon, TrashcanIcon },
   props: {
     recipe: Object,
   },

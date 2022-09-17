@@ -26,53 +26,59 @@
           name="description"
         />
       </div>
-      <div
-        class="form-group"
-        v-for="(ingredientItem, i) in this.localRecipeIngredients"
-        :key="i"
-      >
-        <label :for="`qty${i}`">Qty</label>
-        <input
-          type="text"
-          class="form-control"
-          :id="`qty${i}`"
-          :value="ingredientItem.qty"
-          @input="
-            (e) => (updatedRecipe[`ingredientItem${i}_Qty`] = e.target.value)
-          "
-          name="qty"
-        />
-        <label :for="`unit${i}`">Unit</label>
-        <input
-          type="text"
-          class="form-control"
-          :id="`unit${i}`"
-          :value="ingredientItem.unit"
-          @input="
-            (e) => (updatedRecipe[`ingredientItem${i}_Unit`] = e.target.value)
-          "
-          name="unit"
-        />
-        <label :for="`ingredient${i}`">Ingredient</label>
-        <input
-          type="text"
-          class="form-control"
-          :id="`ingredient${i}`"
-          :value="ingredientItem.ingredient"
-          @input="
-            (e) =>
-              (updatedRecipe[`ingredientItem${i}_Ingredient`] = e.target.value)
-          "
-          name="ingredient"
-          required
-        />
-        <button class="delete-ingredient-btn" @click="deleteIngredientField(i)">
-          X
+      <div class="build-specs">
+        <div
+          class="form-group"
+          v-for="(ingredientItem, i) in this.localRecipeIngredients"
+          :key="i"
+        >
+          <label :for="`qty${i}`">Qty</label>
+          <input
+            type="text"
+            class="form-control"
+            :id="`qty${i}`"
+            :value="ingredientItem.qty"
+            @input="
+              (e) => (updatedRecipe[`ingredientItem${i}_Qty`] = e.target.value)
+            "
+            name="qty"
+          />
+          <label :for="`unit${i}`">Unit</label>
+          <input
+            type="text"
+            class="form-control"
+            :id="`unit${i}`"
+            :value="ingredientItem.unit"
+            @input="
+              (e) => (updatedRecipe[`ingredientItem${i}_Unit`] = e.target.value)
+            "
+            name="unit"
+          />
+          <label :for="`ingredient${i}`">Ingredient</label>
+          <input
+            type="text"
+            class="form-control"
+            :id="`ingredient${i}`"
+            :value="ingredientItem.ingredient"
+            @input="
+              (e) =>
+                (updatedRecipe[`ingredientItem${i}_Ingredient`] =
+                  e.target.value)
+            "
+            name="ingredient"
+            required
+          />
+          <button
+            class="delete-ingredient-btn"
+            @click="deleteIngredientField(i)"
+          >
+            X
+          </button>
+        </div>
+        <button class="add-ingredient-btn" @click="addIngredientField">
+          Add an ingredient
         </button>
       </div>
-      <button class="add-ingredient-btn" @click="addIngredientField">
-        Add an ingredient
-      </button>
       <div class="form-group">
         <label for="garnish">Garnish</label>
         <input
@@ -107,8 +113,8 @@
         ></textarea>
       </div>
       <!-- TODO: default value should be set to recipe.draft, when true, checked -->
-      <div class="form-group">
-        <!-- <label for="draft">Tag this recipe as a draft?</label
+      <!-- <div class="form-group">
+        <label for="draft">Tag this recipe as a draft?</label
         ><input
           type="checkbox"
           class="form-control"
@@ -116,44 +122,44 @@
           :checked="recipe.draft"
           v-model="updatedRecipe.draft"
           name="draft"
-        /> -->
-        <div class="form-group">
-          <label for="creator-attribution">Creator Attribution</label>
-          <input
-            type="text"
-            class="form-control"
-            id="creator-attribution"
-            :value="recipe.creatorAttribution"
-            @input="(e) => (updatedRecipe.creatorAttribution = e.target.value)"
-            name="creator-attribution"
-          />
-        </div>
-        <div class="form-group">
-          <label for="year-created">Year Created</label>
-          <input
-            type="text"
-            class="form-control"
-            id="year-created"
-            :value="recipe.yearCreated"
-            @input="(e) => (updatedRecipe.yearCreated = e.target.value)"
-            name="year-created"
-          />
-        </div>
-        <div class="form-group">
-          <label for="other-info"
-            >Fun facts or other information about this drink:</label
-          >
-          <textarea
-            type="textarea"
-            class="form-control"
-            id="other-info"
-            :value="recipe.otherInfo"
-            @input="(e) => (updatedRecipe.otherInfo = e.target.value)"
-            name="other-info"
-          ></textarea>
-        </div>
-        <br />
+        />
+      </div> -->
+      <div class="form-group">
+        <label for="creator-attribution">Creator Attribution</label>
+        <input
+          type="text"
+          class="form-control"
+          id="creator-attribution"
+          :value="recipe.creatorAttribution"
+          @input="(e) => (updatedRecipe.creatorAttribution = e.target.value)"
+          name="creator-attribution"
+        />
       </div>
+      <div class="form-group">
+        <label for="year-created">Year Created</label>
+        <input
+          type="text"
+          class="form-control"
+          id="year-created"
+          :value="recipe.yearCreated"
+          @input="(e) => (updatedRecipe.yearCreated = e.target.value)"
+          name="year-created"
+        />
+      </div>
+      <div class="form-group">
+        <label for="other-info"
+          >Fun facts or other information about this drink:</label
+        >
+        <textarea
+          type="textarea"
+          class="form-control"
+          id="other-info"
+          :value="recipe.otherInfo"
+          @input="(e) => (updatedRecipe.otherInfo = e.target.value)"
+          name="other-info"
+        ></textarea>
+      </div>
+      <br />
       <button
         class="update-recipe-btn"
         @click="saveEditsClick(recipe.id, this.updatedRecipe)"

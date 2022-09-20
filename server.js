@@ -23,8 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // ----------------------------
 
-// app.use(express.static(path.join(__dirname, "./client/dist")));
-app.use(express.static(path.join(__dirname, "/app/views/")));
+app.use(express.static(path.join(__dirname, "./client/dist")));
 
 // Pulls in all model files so they can be synced within this one line of code (rather than individually in each file)
 // Holds all the sequelize mapping to the tables in our mysql database
@@ -40,7 +39,7 @@ db.sequelize.sync({ force: true }).then(() => {
 // Simple testing route
 app.get("/", (req, res) => {
   // Simple testing route
-  if (process.env.NODE_ENV === "development") {
+  if (process.env.NODE_ENV !== "production") {
     res.json({ message: "Bar Book v0 running" });
   } else {
     res.sendFile(path.join(__dirname, "/app/views/index.html"));

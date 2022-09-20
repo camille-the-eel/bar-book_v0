@@ -13,7 +13,7 @@
     - requirements for draft, personal, and public are different?
 
    -->
-  <form class="add-recipe">
+  <div class="add-recipe form-wrapper">
     <h2>Add your recipe</h2>
     <div class="submit-form">
       <div v-if="!submitted">
@@ -53,27 +53,30 @@
           />
         </div>
 
+        <!-- Ingredients -->
         <div class="build-specs">
           <h4>Build Specs</h4>
           <span>Recipes must have a minimum of two ingredients.</span>
-          <!-- Ingredients -->
           <div
             class="form-group ingredient-item"
             v-for="(ingredientItem, index) in recipe.recipeIngredientItems"
-            :key="index"
+            :key="ingredientItem.id"
             name="ingredient-list"
           >
-            <!-- TODO: make array for placeholder text? -->
             <div>
               <label :for="`qty${index + 1}`">Qty</label>
               <input
                 type="text"
                 class="form-control"
-                size="3"
+                size="4"
                 :id="`qty${index + 1}`"
                 v-model.trim="ingredientItem.measurement_qty"
                 :name="`qty${index + 1}`"
-                placeholder="2"
+                :placeholder="
+                  ingredientListPlaceholders.find(
+                    (el) => el.id === ingredientItem.id
+                  ).qty
+                "
               />
             </div>
             <div>
@@ -81,11 +84,15 @@
               <input
                 type="text"
                 class="form-control"
-                size="6"
+                size="10"
                 :id="`unit${index + 1}`"
                 v-model.trim="ingredientItem.measurement_unit"
                 :name="`unit${index + 1}`"
-                placeholder="oz"
+                :placeholder="
+                  ingredientListPlaceholders.find(
+                    (el) => el.id === ingredientItem.id
+                  ).unit
+                "
               />
             </div>
             <div>
@@ -93,23 +100,21 @@
               <input
                 type="text"
                 class="form-control"
+                size="24"
                 :id="`ingredient${index + 1}`"
                 v-model.trim="ingredientItem.ingredient"
                 :name="`ingredient${index + 1}`"
                 required
-                placeholder="gin or vodka"
+                :placeholder="
+                  ingredientListPlaceholders.find(
+                    (el) => el.id === ingredientItem.id
+                  ).ingredient
+                "
               />
-              <!-- <button
-                class="form-list-btn"
-                @click="removeIngredientItem(index)"
-                :disabled="recipe.recipeIngredientItems.length <= 2"
-              >
-              X
-              </button> -->
             </div>
             <button
               class="form-list-btn"
-              @click="removeIngredientItem(index)"
+              @click="removeIngredientItem(ingredientItem.id, index)"
               :disabled="recipe.recipeIngredientItems.length <= 2"
             >
               <XMarkIcon />
@@ -207,11 +212,11 @@
         <button class="add-more-btn" @click="newRecipe">Add Another</button>
       </div>
     </div>
-  </form>
+  </div>
 </template>
 
 <script>
-// import DeleteIcon from "../components/DeleteButton.vue";
+import { nanoid } from "nanoid";
 import RecipeDataService from "../services/RecipeDataService";
 import XMarkIcon from "../components/icons/XMarkIcon.vue";
 
@@ -226,11 +231,13 @@ export default {
         description: "",
         recipeIngredientItems: [
           {
+            id: nanoid(10),
             measurement_qty: null,
             measurement_unit: "",
             ingredient: "",
           },
           {
+            id: nanoid(10),
             measurement_qty: null,
             measurement_unit: "",
             ingredient: "",
@@ -246,9 +253,66 @@ export default {
         published: false,
       },
       submitted: false,
+      ingredientListPlaceholders: [
+        {
+          id: null,
+          qty: "2",
+          unit: "oz",
+          ingredient: "Herradura Añejo tequila",
+        },
+        { id: null, qty: "1", unit: "barspoon", ingredient: "agave" },
+        { id: null, qty: "1", unit: "dash", ingredient: "hellfire bitters" },
+        { id: null, qty: "0.25", unit: "c", ingredient: "cubed cucumber" },
+        { id: null, qty: "", unit: "top with", ingredient: "club soda" },
+        { id: null, qty: "1", unit: "splash", ingredient: "cranberry juice" },
+        {
+          id: null,
+          qty: "0.5",
+          unit: "oz",
+          ingredient: "Pierre Ferrand dry curaçao",
+        },
+        { id: null, qty: "", unit: "equal parts", ingredient: "vodka" },
+        { id: null, qty: "50", unit: "ml", ingredient: "Rittenhouse rye" },
+        {
+          id: null,
+          qty: "2",
+          unit: "dashes",
+          ingredient: "hopped grapefruit bitters",
+        },
+        {
+          id: null,
+          qty: "3",
+          unit: "cubes",
+          ingredient: "watermelon ice cubes",
+        },
+        { id: null, qty: "30", unit: "ml", ingredient: "beet shrub" },
+        {
+          id: null,
+          qty: "4",
+          unit: "wedges",
+          ingredient: "fresh blood orange",
+        },
+        { id: null, qty: "2", unit: "leaves", ingredient: "fresh mint" },
+        {
+          id: null,
+          qty: "0.75",
+          unit: "oz",
+          ingredient: "Pierre Ferrand dry curaçao",
+        },
+        { id: null, qty: "1", unit: "oz", ingredient: "fresh lime juice" },
+      ],
     };
   },
+  created() {
+    this.initiatePlaceholderIds();
+  },
   methods: {
+    initiatePlaceholderIds() {
+      this.ingredientListPlaceholders[0].id =
+        this.recipe.recipeIngredientItems[0].id;
+      this.ingredientListPlaceholders[1].id =
+        this.recipe.recipeIngredientItems[1].id;
+    },
     toggleDraftDrinkName() {
       const draftName = `Draft – `;
       // also check if this.drinkName has a value already, we don't want to overwrite that
@@ -256,19 +320,25 @@ export default {
         ? (this.recipe.drinkName = draftName)
         : (this.recipe.drinkName = "");
     },
-    removeIngredientItem(i) {
+    removeIngredientItem(ingredientId, i) {
       if (this.recipe.recipeIngredientItems.length <= 2) {
         alert("Recipes must have a minimum of two ingredients.");
       } else {
         this.recipe.recipeIngredientItems.splice(i, 1);
+        this.ingredientListPlaceholders.find(
+          (el) => el.id === ingredientId
+        ).id = null;
       }
     },
     addIngredientItem() {
+      const newId = nanoid(10);
       this.recipe.recipeIngredientItems.push({
+        id: newId,
         measurement_qty: null,
         measurement_unit: "",
         ingredient: "",
       });
+      this.ingredientListPlaceholders.find((el) => el.id === null).id = newId;
     },
     saveRecipe() {
       let data = {
@@ -288,7 +358,7 @@ export default {
       RecipeDataService.create(data)
         .then((res) => {
           this.recipe.id = res.data.id;
-          console.log("DATA", res.data);
+          console.log("DATA SENT", res.data);
           this.submitted = true;
         })
         .catch((e) => {
@@ -296,6 +366,7 @@ export default {
         });
     },
     newRecipe() {
+      this.ingredientListPlaceholders.forEach((el) => el.id === null);
       this.submitted = false;
       this.recipe = {
         id: null,
@@ -303,11 +374,13 @@ export default {
         description: "",
         recipeIngredientItems: [
           {
+            id: nanoid(),
             measurement_qty: null,
             measurement_unit: "",
             ingredient: "",
           },
           {
+            id: nanoid(),
             measurement_qty: null,
             measurement_unit: "",
             ingredient: "",
@@ -322,6 +395,7 @@ export default {
         draft: false,
         published: false,
       };
+      this.initiatePlaceholderIds();
     },
   },
 };

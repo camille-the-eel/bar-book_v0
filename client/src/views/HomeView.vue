@@ -1,4 +1,5 @@
 <template>
+  <SearchBar />
   <div class="home">
     <h3>Homepage</h3>
     <p>
@@ -9,10 +10,10 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import SearchBar from "../components/Nav/SearchBar.vue";
 
 export default {
   name: "Home",
-  components: {},
+  components: { SearchBar },
 };
 </script>

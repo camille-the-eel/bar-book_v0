@@ -1,13 +1,13 @@
 <template>
-  <PencilAltIcon class="hero-icons" />
+  <PencilSquareIcon class="hero-icons" />
 </template>
 
 <script>
-import { PencilAltIcon } from "@heroicons/vue/outline";
+import { PencilSquareIcon } from "@heroicons/vue/24/outline";
 export default {
   name: "EditIcon",
   components: {
-    PencilAltIcon,
+    PencilSquareIcon,
   },
 };
 </script>

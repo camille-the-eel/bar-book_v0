@@ -26,6 +26,9 @@ font-weight: 400/700;
   --color-accent-medium: #7b7b7b;
   --color-accent-medium-light: #999898;
   --color-accent-light: #d8d8d8;
+  --color-accent-chartreuse: #e2e624;
+  --color-accent-red: #ee3431;
+  --color-accent-orange: #fa5;
 }
 
 *,

@@ -10,7 +10,7 @@ const routes = [
   {
     path: "/recipes",
     name: "recipes",
-    component: () => import("../components/RecipesList.vue"),
+    component: () => import("../views/LBBRecipesList.vue"),
   },
   {
     path: "/recipes/:id",

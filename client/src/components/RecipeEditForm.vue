@@ -1,12 +1,12 @@
 <template>
   <div class="recipe-details-container form-wrapper">
-    <h3>Edit your recipe</h3>
-    <button class="exit-btn icon-btn" @click="exitEditModeClick()">
-      <XMarkIcon />
+    <button class="exit-edit-btn icon-btn" @click="exitEditModeClick()">
+      <XIcon />
     </button>
+    <h3 class="form-title">Edit your recipe</h3>
     <!-- Basic Info -->
     <div class="form-category">
-      <div class="form-group">
+      <div class="form-group inline-checkbox">
         <label for="draft">Tag this recipe as a draft?</label
         ><input
           type="checkbox"
@@ -52,45 +52,53 @@
           :key="i"
           name="ingredient-list"
         >
-          <label :for="`qty${i}`">Qty</label>
-          <input
-            type="text"
-            class="form-control"
-            size="4"
-            :id="`qty${i}`"
-            name="qty"
-            v-model="ingredientItem.qty"
-          />
-          <!-- :value="ingredientItem.qty"
+          <div class="flex-group qty">
+            <label :for="`qty${i}`">Qty</label>
+            <input
+              type="text"
+              class="form-control"
+              size="4"
+              :id="`qty${i}`"
+              name="qty"
+              v-model="ingredientItem.qty"
+            />
+            <!-- :value="ingredientItem.qty"
             @input="
               (e) => (updatedRecipe[`ingredientItem${i}_Qty`] = e.target.value)
             " -->
-          <label :for="`unit${i}`">Unit</label>
-          <input
-            type="text"
-            class="form-control"
-            size="10"
-            :id="`unit${i}`"
-            v-model="ingredientItem.unit"
-            name="unit"
-          />
-          <label :for="`ingredient${i}`">Ingredient</label>
-          <input
-            type="text"
-            class="form-control"
-            size="24"
-            :id="`ingredient${i}`"
-            name="ingredient"
-            required
-            v-model="ingredientItem.ingredient"
-          />
-          <button
-            class="form-list-btn icon-btn"
-            @click="deleteIngredientField(i)"
-            :disabled="localRecipeIngredients.length <= 2"
-          >
-            <XMarkIcon />
-          </button>
+          </div>
+          <div class="flex-group unit">
+            <label :for="`unit${i}`">Unit</label>
+            <input
+              type="text"
+              class="form-control"
+              size="10"
+              :id="`unit${i}`"
+              v-model="ingredientItem.unit"
+              name="unit"
+            />
+          </div>
+          <div class="flex-group ingredient">
+            <label :for="`ingredient${i}`">Ingredient</label>
+            <div class="flex-group-with-btn">
+              <input
+                type="text"
+                class="form-control"
+                size="24"
+                :id="`ingredient${i}`"
+                name="ingredient"
+                required
+                v-model="ingredientItem.ingredient"
+              />
+              <button
+                class="form-list-btn icon-btn"
+                @click="deleteIngredientField(i)"
+                :disabled="localRecipeIngredients.length <= 2"
+              >
+                <XIcon />
+              </button>
+            </div>
+          </div>
         </div>
         <button
           v-if="localRecipeIngredients.length <= 15"
@@ -183,10 +191,10 @@
 </template>
 
 <script>
-import XMarkIcon from "./icons/XMarkIcon.vue";
+import XIcon from "./icons/XIcon.vue";
 export default {
   name: "RecipeEditForm",
-  components: { XMarkIcon },
+  components: { XIcon },
   props: {
     recipe: Object,
   },

@@ -71,7 +71,7 @@
               :key="ingredientItem.id"
               name="ingredient-list"
             >
-              <div>
+              <div class="flex-group">
                 <label :for="`qty${index + 1}`">Qty</label>
                 <input
                   type="text"
@@ -88,7 +88,7 @@
                   aria-describedby="2"
                 />
               </div>
-              <div>
+              <div class="flex-group">
                 <label :for="`unit${index + 1}`">Unit</label>
                 <input
                   type="text"
@@ -105,33 +105,35 @@
                   aria-describedby="ounces"
                 />
               </div>
-              <div>
+              <div class="flex-group">
                 <label :for="`ingredient${index + 1}`"
                   >Ingredient<span class="form-required">*</span></label
                 >
-                <input
-                  type="text"
-                  class="form-control"
-                  size="24"
-                  :id="`ingredient${index + 1}`"
-                  v-model.trim="ingredientItem.ingredient"
-                  :name="`ingredient${index + 1}`"
-                  required
-                  :placeholder="
-                    ingredientListPlaceholders.find(
-                      (el) => el.id === ingredientItem.id
-                    ).ingredient
-                  "
-                  arira-describedby="Rittenhouse rye whiskey"
-                />
+                <div class="flex-group-with-btn">
+                  <input
+                    type="text"
+                    class="form-control ingredient"
+                    size="24"
+                    :id="`ingredient${index + 1}`"
+                    v-model.trim="ingredientItem.ingredient"
+                    :name="`ingredient${index + 1}`"
+                    required
+                    :placeholder="
+                      ingredientListPlaceholders.find(
+                        (el) => el.id === ingredientItem.id
+                      ).ingredient
+                    "
+                    arira-describedby="Rittenhouse rye whiskey"
+                  />
+                  <button
+                    class="form-list-btn icon-btn"
+                    @click="removeIngredientItem(ingredientItem.id, index)"
+                    :disabled="recipe.recipeIngredientItems.length <= 2"
+                  >
+                    <XIcon />
+                  </button>
+                </div>
               </div>
-              <button
-                class="form-list-btn icon-btn"
-                @click="removeIngredientItem(ingredientItem.id, index)"
-                :disabled="recipe.recipeIngredientItems.length <= 2"
-              >
-                <XMarkIcon />
-              </button>
             </div>
           </div>
           <button
@@ -239,11 +241,11 @@
 import { nanoid } from "nanoid";
 import moment from "moment";
 import RecipeDataService from "../services/RecipeDataService";
-import XMarkIcon from "../components/icons/XMarkIcon.vue";
+import XIcon from "../components/icons/XIcon.vue";
 
 export default {
   name: "add-recipe",
-  components: { XMarkIcon },
+  components: { XIcon },
   data() {
     return {
       recipe: {

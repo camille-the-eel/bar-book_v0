@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { TrashIcon } from "@heroicons/vue/outline";
+import { TrashIcon } from "@heroicons/vue/24/outline";
 export default {
   name: "TrashcanIcon",
   components: {

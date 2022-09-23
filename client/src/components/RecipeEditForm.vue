@@ -186,6 +186,9 @@
       >
         Save
       </button>
+      <button class="exit-edit-btn text-btn" @click="exitEditModeClick()">
+        Cancel
+      </button>
     </div>
   </div>
 </template>

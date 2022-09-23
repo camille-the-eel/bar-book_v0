@@ -1,7 +1,12 @@
 <template>
   <span class="search-bar-wrapper">
     <label for="search-bar" class="search-bar-label">Search</label>
-    <input type="text" name="search-bar" class="search-bar" />
+    <input
+      type="text"
+      name="search-bar"
+      class="search-bar"
+      placeholder="Functionality not yet implemented–coming soon!"
+    />
     <img src="../../assets/icons/search.svg" class="search-icon" />
   </span>
 </template>

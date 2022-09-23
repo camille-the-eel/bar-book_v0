@@ -27,5 +27,6 @@ export default {
 
 @import "../src/assets/reset.css";
 @import "../src/assets/base.css";
-@import "../src/assets/form.css";
+@import "../src/assets/input.css";
+@import "../src/assets/table.css";
 </style>

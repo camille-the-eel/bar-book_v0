@@ -108,7 +108,7 @@ export default {
 <style scoped>
 .modal-screen-overlay {
   /* z-index: 10;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background-color: rgba(255, 255, 255, 0.9);
   background-size: cover; */

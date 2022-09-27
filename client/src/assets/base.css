@@ -28,7 +28,7 @@ font-weight: 400/700;
   --color-accent-light: #d8d8d8;
   --color-accent-chartreuse: #e2e624;
   --color-accent-red: #ee3431;
-  --color-accent-orange: #fa5;
+  --color-accent-orange: #ffaa55;
 }
 
 *,
@@ -144,4 +144,10 @@ a:visited {
   to {
     transform: rotate(0deg);
   }
+}
+
+/* Modal CSS */
+.action-modal {
+  position: absolute;
+  top: 0;
 }

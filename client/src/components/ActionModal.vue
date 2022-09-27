@@ -1,9 +1,12 @@
 <template>
   <div class="modal-screen-overlay">
     <div class="modal-container">
+      <button @click="closeModal()" class="cancel-btn exit-btn icon-btn">
+        <XIcon />
+      </button>
       <div class="first-check" v-if="!this.showSecondConfirmation">
         <h3>{{ this.header }}</h3>
-        <p>{{ this.disclaimerMessage }}</p>
+        <p class="disclaimer-msg">{{ this.disclaimerMessage }}</p>
         <p>{{ this.mainMessage }}</p>
         <button
           @click="
@@ -13,27 +16,37 @@
                 : confirmAction(recipe.id);
             }
           "
+          class="final-action-btn text-btn"
         >
           {{ this.actionButton }}
         </button>
-        <button @click="closeModal()">{{ this.cancelButton }}</button>
+        <button @click="closeModal()" class="cancel-btn text-btn">
+          {{ this.cancelButton }}
+        </button>
       </div>
       <div class="final-check" v-if="this.showSecondConfirmation">
         <h3>{{ this.header }}</h3>
         <p>{{ this.finalMessage }}</p>
-        <button @click="secondConfirmAction(recipe.id)">
+        <button
+          @click="secondConfirmAction(recipe.id)"
+          class="final-action-btn text-btn"
+        >
           {{ this.confirmActionButton }}
         </button>
-        <button @click="closeModal()">{{ this.cancelButton }}</button>
+        <button @click="closeModal()" class="cancel-btn text-btn">
+          {{ this.cancelButton }}
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import XIcon from "@/components/icons/XIcon.vue";
+
 export default {
   name: "ActionModal",
-  components: {},
+  components: { XIcon },
   props: {
     recipe: Object,
     action: String,
@@ -66,7 +79,7 @@ export default {
   },
   mounted() {
     if (this.action === "DELETE") {
-      this.header = "DELETE THIS RECIPE?";
+      this.header = "Delete this recipe?";
       this.disclaimerMessage =
         "This is a permanent action and cannot be undone!";
       this.mainMessage =
@@ -79,9 +92,9 @@ export default {
       this.useSecondConfirmation = true;
     }
     if (this.action === "EXIT_EDIT") {
-      this.header = "EXIT EDITING MODE?";
+      this.header = "Exit editing mode?";
       this.disclaimerMessage = "Your changes will not be saved!";
-      this.actionButton = "Exit, discard changes.";
+      this.actionButton = "Yes, discard changes.";
       this.cancelButton = "Oops, take me back to editing mode.";
       this.useSecondConfirmation = false;
     }
@@ -107,19 +120,41 @@ export default {
 
 <style scoped>
 .modal-screen-overlay {
-  /* z-index: 10;
+  z-index: 10;
   width: 100%;
   height: 100vh;
   background-color: rgba(255, 255, 255, 0.9);
-  background-size: cover; */
+  background-size: cover;
   position: fixed;
-  z-index: 10;
-  background-color: darkblue;
 }
 
 .modal-container {
-  min-width: 200px;
-  max-width: 400px;
-  color: white;
+  position: relative;
+  max-width: 440px;
+  margin: 10vh auto;
+  background-color: white;
+  color: var(--color-text);
+  border: 0.1rem solid var(--color-accent-orange);
+  padding: 3.7rem;
+}
+
+.text-btn {
+  margin: 1rem;
+}
+
+.exit-btn {
+  top: 0;
+  padding: 0.6rem;
+}
+
+p {
+  margin: 1rem 0;
+  padding: 0 2rem;
+}
+
+.disclaimer-msg {
+  color: var(--color-accent-orange);
+  font-weight: 700;
+  font-style: italic;
 }
 </style>

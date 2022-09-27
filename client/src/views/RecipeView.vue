@@ -1,30 +1,29 @@
 <template>
-  <div class="page-container">
-    <ActionModal
-      v-if="this.modalShow"
+  <ActionModal
+    v-if="this.modalShow"
+    :recipe="this.recipe"
+    :action="this.modalAction"
+    @action-click="this.modalActionClick"
+    @close-modal="closeModal"
+    class="action-modal"
+  ></ActionModal>
+  <div class="recipe-container">
+    <RecipeDetails
       :recipe="this.recipe"
-      :action="this.modalAction"
-      @action-click="this.modalActionClick"
-      @close-modal="closeModal"
-    ></ActionModal>
-    <div class="recipe-container">
-      <RecipeDetails
-        :recipe="this.recipe"
-        v-if="this.recipe.id && !this.editingMode"
-        @delete-recipe-click="deleteRecipeRequest"
-        @enter-edit-mode="enterEditMode"
-      ></RecipeDetails>
-      <RecipeEditForm
-        v-if="this.recipe.id && this.editingMode"
-        :recipe="this.recipe"
-        @exit-edit-click="exitEditRequest"
-        @save-edits="saveEditUpdates"
-      ></RecipeEditForm>
-      <RecipeNotFound
-        v-if="!this.recipe.id"
-        :message="this.notFoundMessage"
-      ></RecipeNotFound>
-    </div>
+      v-if="this.recipe.id && !this.editingMode"
+      @delete-recipe-click="deleteRecipeRequest"
+      @enter-edit-mode="enterEditMode"
+    ></RecipeDetails>
+    <RecipeEditForm
+      v-if="this.recipe.id && this.editingMode"
+      :recipe="this.recipe"
+      @exit-edit-click="exitEditRequest"
+      @save-edits="saveEditUpdates"
+    ></RecipeEditForm>
+    <RecipeNotFound
+      v-if="!this.recipe.id"
+      :message="this.notFoundMessage"
+    ></RecipeNotFound>
   </div>
 </template>
 

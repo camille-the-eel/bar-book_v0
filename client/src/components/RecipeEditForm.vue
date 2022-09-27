@@ -1,6 +1,6 @@
 <template>
   <div class="recipe-details-container form-wrapper">
-    <button class="exit-edit-btn icon-btn" @click="exitEditModeClick()">
+    <button class="exit-btn cancel-btn icon-btn" @click="exitEditModeClick()">
       <XIcon />
     </button>
     <h3 class="form-title">Edit your recipe</h3>
@@ -186,7 +186,7 @@
       >
         Save
       </button>
-      <button class="exit-edit-btn text-btn" @click="exitEditModeClick()">
+      <button class="exit-btn cancel-btn text-btn" @click="exitEditModeClick()">
         Cancel
       </button>
     </div>

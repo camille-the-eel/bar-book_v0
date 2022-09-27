@@ -228,9 +228,14 @@
         >
       </div>
       <div v-else>
-        <h4>You have successfully added the recipe to your personal book!</h4>
+        <h5 class="success-msg">
+          You have successfully added the recipe to your personal book!
+        </h5>
         <button class="success-continue-btn text-btn" @click="newRecipe">
           Add Another
+        </button>
+        <button class="view-lbb-btn text-btn">
+          <router-link to="/recipes"> View Bar Book </router-link>
         </button>
       </div>
     </div>
@@ -241,11 +246,12 @@
 import { nanoid } from "nanoid";
 import moment from "moment";
 import RecipeDataService from "../services/RecipeDataService";
+import { RouterLink } from "vue-router";
 import XIcon from "../components/icons/XIcon.vue";
 
 export default {
   name: "add-recipe",
-  components: { XIcon },
+  components: { XIcon, RouterLink },
   data() {
     return {
       recipe: {
@@ -339,7 +345,7 @@ export default {
     },
     toggleDraftDrinkName() {
       const date = moment().format("dddd l");
-      this.generatedDraftTitle = `DRAFT | ${date}`;
+      this.generatedDraftTitle = `Draft–${date}`;
 
       if (this.recipe.draft && this.recipe.drinkName === "") {
         this.recipe.drinkName = this.generatedDraftTitle;

@@ -43,7 +43,7 @@ app.get("/", (req, res) => {
     res.json({ message: "Bar Book v0 running" });
   } else {
     // res.sendFile(path.join(__dirname, "/app/views/index.html"));
-    res.sendFile(path.join(__dirname, "./client/build/index.html"));
+    res.sendFile(path.join(__dirname, "./client/dist/index.html"));
   }
 });
 

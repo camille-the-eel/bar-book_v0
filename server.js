@@ -23,7 +23,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // ----------------------------
 
-app.use(express.static(path.join(__dirname, "./client/dist")));
+// app.use(express.static(path.join(__dirname, "./client/dist")));
+// app.use(express.static(path.join(__dirname, "client/dist")));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/dist"));
+}
 
 // Pulls in all model files so they can be synced within this one line of code (rather than individually in each file)
 // Holds all the sequelize mapping to the tables in our mysql database

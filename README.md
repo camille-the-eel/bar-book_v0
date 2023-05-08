@@ -1,3 +1,13 @@
 # bar-book_v0
 
-node server.js
+## Setup and installation instructions:
+
+```sh
+cd client/
+npm i
+
+cd ../
+npm i
+
+npm run dev
+```

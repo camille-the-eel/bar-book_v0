@@ -36,9 +36,11 @@ const db = require("./app/models");
 // db.sequelize.sync();
 
 // NOTE: Development only syncing of models
-db.sequelize.sync({ force: true }).then(() => {
-  console.log("Drop and re-sync db.");
-});
+if (process.env.NODE_ENV !== "production") {
+  db.sequelize.sync({ force: true }).then(() => {
+    console.log("Drop and re-sync db.");
+  });
+}
 
 // Simple testing route
 app.get("/", (req, res) => {

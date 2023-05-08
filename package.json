@@ -11,7 +11,8 @@
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
     "start:dev": "node server.js",
-    "client": "cd client && npm run start",
+    "client": "cd client && npm run serve",
+    "dev": "concurrently \"npm run start:dev\" \"npm run client\"",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
@@ -42,5 +43,8 @@
     "express": "^4.18.1",
     "mysql2": "^2.3.3",
     "sequelize": "^6.21.2"
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.1"
   }
 }

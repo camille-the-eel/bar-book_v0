@@ -41,4 +41,9 @@ export default {
 .search-icon {
   width: 2.5rem;
 }
+
+.search-bar:focus {
+  outline: none;
+  background: none;
+}
 </style>

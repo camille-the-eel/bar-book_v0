@@ -11,3 +11,5 @@ npm i
 
 npm run dev
 ```
+
+This will run on the front end at `http://localhost:8081/`
